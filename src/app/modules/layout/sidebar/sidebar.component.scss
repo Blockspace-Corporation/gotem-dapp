@@ -1,0 +1,12 @@
+.sidebar {
+    width: 300px;
+    height: 100%;
+    color: white;
+    transition: margin-left 0.3s;
+    overflow-x: hidden;
+    padding: 25px 0px 25px 25px;
+}
+
+.collapsed {
+    margin-left: -300px;
+}

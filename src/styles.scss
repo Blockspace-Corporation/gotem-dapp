@@ -1,0 +1,23 @@
+@import "primeng/resources/themes/lara-dark-amber/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'primeflex/primeflex.scss';
+
+html, body {
+    margin: 0px;
+}
+
+.p-menubar {
+    padding-bottom: 0.5rem;
+    border-radius: 0;
+}
+
+.p-menubar-start {
+    padding: 0 1rem;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    width: 100%;
+    margin-bottom: 10px;
+}

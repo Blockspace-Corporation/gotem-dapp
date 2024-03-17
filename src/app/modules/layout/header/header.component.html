@@ -1,0 +1,23 @@
+<p-menubar [model]="headerMenuItems" [style]="{'position':'fixed', 'width':'100%', 'z-index':'1'}">
+    <ng-template pTemplate="start">
+        <button class="p-button p-button-sm p-button-text p-button-secondary" (click)="toggleSidebarOnclick()">
+            <i class="pi pi-bars"></i>
+        </button>
+        &nbsp;
+        <img src="./../../../assets/img/gotem_logo.png" height="30" />
+    </ng-template>
+    <ng-template pTemplate="end">
+        <p-menu #menu [model]="networkMenuItems" [popup]="true"></p-menu>
+        <p-button icon="pi pi-globe" [rounded]="true" [text]="true" (click)="menu.toggle($event)"></p-button>
+        &nbsp;
+        <p-button icon="pi pi-wallet" label="Connect" [rounded]="true" (click)="showDialog()"></p-button>
+    </ng-template>
+</p-menubar>
+<br />
+<br />
+<br />
+
+<p-dialog header="Connect Wallet" [(visible)]="visible" [modal]="true" [style]="{ width: '35vw' }" [draggable]="false"
+    [resizable]="false">
+    <app-accounts></app-accounts>
+</p-dialog>

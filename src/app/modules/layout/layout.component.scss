@@ -1,0 +1,15 @@
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+.outlet-container {
+    padding: 25px;
+    width: 100%;
+}

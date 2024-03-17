@@ -1,0 +1,43 @@
+<div *ngIf="showWalletOptions">
+    <div class="flex flex-column gap-2">
+        <button type="button" pButton class="p-button-outlined p-button-rounded p-button-lg p-button-warning" (click)="selectPolkadot()">
+            <img src="./../../../assets/img/wallet-icons/polkadotjs.png" height="50" />
+            &nbsp;
+            &nbsp;
+            <b>polkadot{{ '{.js}' }}</b>
+        </button>
+        <button type="button" pButton class="p-button-outlined p-button-rounded p-button-lg p-button-warning" (click)="selectTalisman()">
+            <img src="./../../../assets/img/wallet-icons/talisman.jpg" height="50" />
+            &nbsp;
+            &nbsp;
+            <b>Talisman</b>
+        </button>
+    </div>
+</div>
+<div *ngIf="showWalletAccounts">
+    <br />
+    <p-table responsiveLayout="scroll" [value]="web3Wallets" selectionMode="single"
+        [(selection)]="selectedWalletAccount" (onRowSelect)="onWalletSelect($event)">
+        <ng-template pTemplate="body" let-web3Wallet>
+            <tr [pSelectableRow]="web3Wallet">
+                <td style="word-break: break-all; border-radius: 10px; border: 1px solid gray;">
+                    <span style="font-size: 20px; font-weight: bold;">
+                        {{web3Wallet.metaName}}
+                    </span>
+                    <br />
+                    <span style="font-size: 12px; color: gray;">
+                        {{web3Wallet.address}}
+                    </span>
+                </td>
+            </tr>
+            <div style="margin-top: 5px; width: 100%;"></div>
+        </ng-template>
+    </p-table>
+    <br />
+    <br />
+    <button pButton class="p-button-sm p-button-text p-button-rounded" type="button" iconPos="left"
+        icon="pi pi-arrow-left" label="" (click)="showWalletOptions = true; showWalletAccounts = false;"></button>
+    &nbsp;
+    <img *ngIf="selectedWallet == 'polkadot-js'" src="../../../assets/img/wallet-icons/polkadotjs.png" height="40" />
+    <img *ngIf="selectedWallet == 'talisman'" src="../../../assets/img/wallet-icons/talisman.jpg" height="40" />
+</div>

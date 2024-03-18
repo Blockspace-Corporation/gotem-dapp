@@ -9,21 +9,21 @@
         <div class="p-toolbar-group-start">
             <div class="grid">
                 <div class="col-12 md:col-4 lg:col-4">
-                    <span class="p-input-icon-left">
+                    <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <input pInputText placeholder="Category" />
+                        <input pInputText placeholder="Category" class="w-full" />
                     </span>
                 </div>
                 <div class="col-12 md:col-4 lg:col-4">
-                    <span class="p-input-icon-left">
+                    <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <input pInputText placeholder="Status" />
+                        <input pInputText placeholder="Status" class="w-full" />
                     </span>
                 </div>
                 <div class="col-12 md:col-4 lg:col-4">
-                    <span class="p-input-icon-left">
+                    <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <input pInputText placeholder="Keywords" />
+                        <input pInputText placeholder="Keywords" class="w-full" />
                     </span>
                 </div>
             </div>
@@ -33,18 +33,17 @@
             <div class="grid">
                 <div class="col-12 md:col-12 lg:col-12">
                     <button type="button" pButton class="p-button p-button-rounded">
-                        Create Case
+                        New Case
                     </button>
                 </div>
             </div>
         </div>
     </p-toolbar>
 </div>
-
 <div class="w-full mb-3">
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Your Assets">
+            <p-panel header="Cases">
                 <div class="card">
                     <p-table [value]="cases" [tableStyle]="{ 'min-width': '50rem' }">
                         <ng-template pTemplate="header">

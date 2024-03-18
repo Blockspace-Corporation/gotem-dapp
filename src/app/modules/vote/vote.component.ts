@@ -10,6 +10,8 @@ export class VoteComponent {
   breadcrumbHome: MenuItem | undefined;
   breadcrumbItems: MenuItem[] | undefined;
 
+  voters: any[] = [];
+
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-evidence',
-  templateUrl: './evidence.component.html',
-  styleUrl: './evidence.component.scss'
+  selector: 'app-evidence-detail',
+  templateUrl: './evidence-detail.component.html',
+  styleUrl: './evidence-detail.component.scss'
 })
-export class EvidenceComponent {
+export class EvidenceDetailComponent {
   breadcrumbHome: MenuItem | undefined;
   breadcrumbItems: MenuItem[] | undefined;
 
@@ -16,7 +16,8 @@ export class EvidenceComponent {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
       { label: 'Dashboard' },
-      { label: 'Evidence' }
+      { label: 'Case' },
+      { label: 'Case Detail' },
     ];
   }
 }

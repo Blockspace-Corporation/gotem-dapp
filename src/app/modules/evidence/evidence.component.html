@@ -4,3 +4,67 @@
     </div>
     <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
 </div>
+<div class="w-full mb-3">
+    <p-toolbar>
+        <div class="p-toolbar-group-start">
+            <div class="grid">
+                <div class="col-12 md:col-6 lg:col-6">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-search"></i>
+                        <input pInputText placeholder="Status" class="w-full" />
+                    </span>
+                </div>
+                <div class="col-12 md:col-6 lg:col-6">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-search"></i>
+                        <input pInputText placeholder="Keywords" class="w-full" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="p-toolbar-group-center"></div>
+        <div class="p-toolbar-group-end">
+            <div class="grid">
+                <div class="col-12 md:col-12 lg:col-12">
+                    <button type="button" pButton class="p-button p-button-rounded">
+                        New Evidence
+                    </button>
+                </div>
+            </div>
+        </div>
+    </p-toolbar>
+</div>
+<div class="w-full mb-3">
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12">
+            <p-panel header="Evidences">
+                <div class="card">
+                    <p-table [value]="evidences" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Evidence No.</th>
+                                <th>Description</th>
+                                <th>Owner</th>
+                                <th>Votes</th>
+                                <th>Case No.</th>
+                                <th>Case Title</th>
+                                <th>Status</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-userasset>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

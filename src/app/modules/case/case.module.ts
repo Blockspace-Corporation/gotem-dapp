@@ -8,14 +8,18 @@ import { PanelModule } from 'primeng/panel';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { CaseRoutingModule } from './case-routing.module';
 import { CaseComponent } from './case.component';
+import { CaseDetailComponent } from './case-detail/case-detail.component';
 
 @NgModule({
   declarations: [
-    CaseComponent
+    CaseComponent,
+    CaseDetailComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { CaseComponent } from './case.component';
     InputTextModule,
     InputGroupModule,
     InputGroupAddonModule,
-    TableModule
+    InputTextareaModule,
+    TableModule,
+    FileUploadModule
   ]
 })
 export class CaseModule { }

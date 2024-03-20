@@ -38,6 +38,7 @@ export class SmartContractVoteService {
           if (results.length > 0) {
             for (let i = 0; i < results.length; i++) {
               voters.push({
+                voterId: results[i].voterId,
                 caseId: results[i].caseId,
                 voter: results[i].voter,
                 amountHold: results[i].amountHold,
@@ -67,6 +68,7 @@ export class SmartContractVoteService {
 
           if (results != null || results != undefined) {
             voter = {
+              voterId: results.voterId,
               caseId: results.caseId,
               voter: results.voter,
               amountHold: results.amountHold,
@@ -113,6 +115,7 @@ export class SmartContractVoteService {
           if (results.length > 0) {
             for (let i = 0; i < results.length; i++) {
               votes.push({
+                voteId: results[i].voteId,
                 caseId: results[i].caseId,
                 evidenceId: results[i].evidenceId,
                 voter: results[i].voter,
@@ -144,6 +147,7 @@ export class SmartContractVoteService {
 
           if (results != null || results != undefined) {
             vote = {
+              voteId: results.voteId,
               caseId: results.caseId,
               evidenceId: results.evidenceId,
               voter: results.voter,

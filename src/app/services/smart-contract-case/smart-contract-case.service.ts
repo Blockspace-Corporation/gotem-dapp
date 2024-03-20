@@ -37,6 +37,7 @@ export class SmartContractCaseService {
           if (results.length > 0) {
             for (let i = 0; i < results.length; i++) {
               caseNFTs.push({
+                caseId: results[i].caseId,
                 title: results[i].title,
                 description: results[i].description,
                 category: results[i].category,
@@ -69,6 +70,7 @@ export class SmartContractCaseService {
 
           if (results != null || results != undefined) {
             caseNFT = {
+              caseId: results.caseId,
               title: results.title,
               description: results.description,
               category: results.category,

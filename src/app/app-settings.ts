@@ -1,5 +1,5 @@
 export class AppSettings {
-    public wsProviderEndpoint = 'ws://127.0.0.1:9944';
-    public apiEndpoint = 'http://localhost:3000';
+    public wsProviderEndpoint = 'wss://rococo-contracts-rpc.polkadot.io';
+    public apiEndpoint = 'https://dapp-api.gotem.io/';
     public keypair = localStorage.getItem("wallet-keypair") || "";
 }

@@ -1,4 +1,5 @@
 export class CaseNftModel {
+    caseId: number = 0;
     title: string = "";
     description: string = "";
     category: string = "Scam";

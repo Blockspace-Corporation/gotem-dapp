@@ -37,6 +37,7 @@ export class SmartContractEvidenceService {
           if (results.length > 0) {
             for (let i = 0; i < results.length; i++) {
               evidenceNFTs.push({
+                evidenceId: results[i].evidenceId,
                 description: results[i].description,
                 owner: results[i].owner,
                 file: results[i].file,
@@ -67,6 +68,7 @@ export class SmartContractEvidenceService {
 
           if (results != null || results != undefined) {
             evidenceNFT = {
+              evidenceId: results.evidenceId,
               description: results.description,
               owner: results.owner,
               file: results.file,

@@ -53,6 +53,7 @@ export class CaseDetailComponent {
         let data: any = result;
         if (data != null || data != undefined) {
           this.caseDetail = {
+            caseId: data.caseId,
             title: data.title,
             description: data.description,
             category: data.category,
@@ -63,19 +64,20 @@ export class CaseDetailComponent {
           };
         }
 
-        this.getAllEvidence();
+        this.getAllEvidenceByCaseId();
       }
     )
   }
 
-  public getAllEvidence(): void {
+  public getAllEvidenceByCaseId(): void {
     this.evidences = [];
-    this.smartContractEvidenceService.getAllEvidence().subscribe(
+    this.smartContractEvidenceService.getAllEvidenceByCaseId(1).subscribe(
       result => {
         let data: any = result;
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             this.evidences.push({
+              evidenceId: data[i].evidenceId,
               description: data[i].description,
               owner: data[i].owner,
               file: data[i].file,

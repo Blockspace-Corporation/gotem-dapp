@@ -43,6 +43,7 @@ export class VoteComponent {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             this.voters.push({
+              voterId: data[i].voterId,
               caseId: data[i].caseId,
               voter: data[i].voter,
               amountHold: data[i].amountHold,
@@ -64,6 +65,7 @@ export class VoteComponent {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             this.votes.push({
+              voteId: data[i].voteId,
               caseId: data[i].caseId,
               evidenceId: data[i].evidenceId,
               voter: data[i].voter,
@@ -117,7 +119,7 @@ export class VoteComponent {
 
             this.showNewVoterModal = false;
             this.showNewVoteModal = false;
-            
+
             this.getAllVoter();
           }
         );

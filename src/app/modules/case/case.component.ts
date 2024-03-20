@@ -54,6 +54,7 @@ export class CaseComponent {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             this.cases.push({
+              caseId: data[i].caseId,
               title: data[i].title,
               description: data[i].description,
               category: data[i].category,

@@ -46,6 +46,7 @@ export class EvidenceComponent {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             this.evidences.push({
+              evidenceId: data[i].evidenceId,
               description: data[i].description,
               owner: data[i].owner,
               file: data[i].file,

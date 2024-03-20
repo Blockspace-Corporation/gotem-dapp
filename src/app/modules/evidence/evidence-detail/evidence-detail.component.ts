@@ -46,6 +46,7 @@ export class EvidenceDetailComponent {
         let data: any = result;
         if (data != null || data != undefined) {
           this.evidenceDetail = {
+            evidenceId: data.evidenceId,
             description: data.description,
             owner: data.owner,
             file: data.file,
@@ -67,6 +68,7 @@ export class EvidenceDetailComponent {
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
             this.voters.push({
+              voterId: data[i].voterId,
               caseId: data[i].caseId,
               voter: data[i].voter,
               amountHold: data[i].amountHold,

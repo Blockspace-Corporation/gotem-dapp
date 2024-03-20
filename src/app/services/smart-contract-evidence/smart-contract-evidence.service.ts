@@ -88,6 +88,38 @@ export class SmartContractEvidenceService {
     });
   }
 
+  public getAllEvidenceByCaseId(caseId: number): Observable<EvidenceNftModel[] | []> {
+    return new Observable<EvidenceNftModel[]>((observer) => {
+      let evidenceNFTs: EvidenceNftModel[] = [];
+
+      this.httpClient.get(this.defaultApiEndpoint + '/api/smart-contract/evidence/get/all-evidence/by-case-id/' + caseId, this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          if (results.length > 0) {
+            for (let i = 0; i < results.length; i++) {
+              evidenceNFTs.push({
+                evidenceId: results[i].evidenceId,
+                description: results[i].description,
+                owner: results[i].owner,
+                file: results[i].file,
+                caseId: results[i].case_id,
+                status: results[i].status
+              });
+            }
+          }
+
+          observer.next(evidenceNFTs);
+          observer.complete();
+        },
+        error => {
+          observer.next([]);
+          observer.complete();
+        }
+      )
+    });
+  }
+
   public setEvidenceExtrinsic(data: EvidenceNftModel): Observable<any> {
     return new Observable<any>((observer) => {
       this.httpClient.post(this.defaultApiEndpoint + "/api/smart-contract/evidence/extrinsic/set-evidence", JSON.stringify(data), this.options).subscribe(

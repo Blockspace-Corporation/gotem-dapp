@@ -5,7 +5,7 @@
                 <div class="flex align-items-center flex-wrap">
                     <img src="./../../../../assets/img/xode.png" height="17" class="ml-3 mr-3">
                     <span class="text-white text-sm">
-                        <b>1,000 GTX</b>
+                        <b>{{ decimalPipe.transform(balance) || "0" }} GTX</b>
                     </span>
                 </div>
             </div>

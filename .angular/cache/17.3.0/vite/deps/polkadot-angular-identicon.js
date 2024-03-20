@@ -2,14 +2,6 @@ import {
   BrowserModule,
   DomSanitizer
 } from "./chunk-VTMNOWCS.js";
-import {
-  blake2AsU8a,
-  decodeAddress
-} from "./chunk-2MRYR5WN.js";
-import {
-  isU8a,
-  stringToU8a
-} from "./chunk-5VGPNYA4.js";
 import "./chunk-EWUTYZIZ.js";
 import {
   CommonModule,
@@ -29,6 +21,14 @@ import {
   ɵɵsanitizeHtml
 } from "./chunk-PK6LRLNG.js";
 import "./chunk-62N25QID.js";
+import {
+  blake2AsU8a,
+  decodeAddress
+} from "./chunk-2MRYR5WN.js";
+import {
+  isU8a,
+  stringToU8a
+} from "./chunk-5VGPNYA4.js";
 import {
   __commonJS,
   __toESM

@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@polkadot/api": "^10.12.2",
+    "@polkadot/api-contract": "^10.12.4",
     "@polkadot/extension-dapp": "^0.46.8",
     "@polkadot/keyring": "^12.6.2",
     "polkadot-angular-identicon": "^1.0.3-rc1",

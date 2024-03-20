@@ -80,7 +80,10 @@ export class AccountsComponent {
     let keypair = (await generateKeypair);
     if (keypair != "") {
       localStorage.setItem("wallet-meta-name", String(this.selectedWalletAccount.metaName));
+      localStorage.setItem("wallet-address", String(this.selectedWalletAccount.address));
       localStorage.setItem("wallet-keypair", keypair);
     }
+
+    location.reload();
   }
 }

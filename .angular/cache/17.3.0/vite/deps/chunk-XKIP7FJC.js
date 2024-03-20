@@ -1,10 +1,10 @@
 import {
+  BaseIcon
+} from "./chunk-2B4KAZG7.js";
+import {
   Ripple,
   RippleModule
 } from "./chunk-Q6AWF5GZ.js";
-import {
-  BaseIcon
-} from "./chunk-2B4KAZG7.js";
 import {
   DomHandler
 } from "./chunk-EK2YCWCT.js";
@@ -951,4 +951,4 @@ export {
   Button,
   ButtonModule
 };
-//# sourceMappingURL=chunk-5UFD4ALA.js.map
+//# sourceMappingURL=chunk-XKIP7FJC.js.map

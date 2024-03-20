@@ -18,6 +18,10 @@ export class HeaderComponent {
   headerMenuItems: MenuItem[] | undefined;
   networkMenuItems: MenuItem[] | undefined;
 
+  walletName = localStorage.getItem("wallet-meta-name") || "";
+  address = localStorage.getItem("wallet-address") || "";
+  keypair = localStorage.getItem("wallet-keypair") || "";
+
   isSidebarCollapsed = false;
 
   public toggleSidebarOnclick(): void {

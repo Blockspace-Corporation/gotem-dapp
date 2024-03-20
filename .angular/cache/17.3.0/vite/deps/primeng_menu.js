@@ -1,11 +1,11 @@
 import {
-  Ripple,
-  RippleModule
-} from "./chunk-Q6AWF5GZ.js";
-import {
   Tooltip,
   TooltipModule
 } from "./chunk-5GRRHA6X.js";
+import {
+  Ripple,
+  RippleModule
+} from "./chunk-Q6AWF5GZ.js";
 import {
   ConnectedOverlayScrollHandler,
   DomHandler

@@ -3,16 +3,16 @@ import {
   AngleRightIcon
 } from "./chunk-KIKPFQMT.js";
 import {
-  Ripple,
-  RippleModule
-} from "./chunk-Q6AWF5GZ.js";
-import {
   Tooltip,
   TooltipModule
 } from "./chunk-5GRRHA6X.js";
 import {
   BaseIcon
 } from "./chunk-2B4KAZG7.js";
+import {
+  Ripple,
+  RippleModule
+} from "./chunk-Q6AWF5GZ.js";
 import {
   DomHandler
 } from "./chunk-EK2YCWCT.js";

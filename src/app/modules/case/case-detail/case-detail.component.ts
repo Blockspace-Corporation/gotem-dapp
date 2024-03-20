@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 import { CaseNftModel } from '../../../models/case-nft.model';
@@ -20,6 +20,7 @@ export class CaseDetailComponent {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     public decimalPipe: DecimalPipe,
     private smartContractCaseService: SmartContractCaseService,
     private smartContractEvidenceService: SmartContractEvidenceService,
@@ -46,9 +47,9 @@ export class CaseDetailComponent {
 
   executionExtrinsicsStatus: ExecuteExtrinsicsStatusModel | undefined;
 
-  public getCaseById(): void {
+  public getCaseById(caseId: number): void {
     this.caseDetail = new CaseNftModel() || undefined;
-    this.smartContractCaseService.getCaseById(1).subscribe(
+    this.smartContractCaseService.getCaseById(caseId).subscribe(
       result => {
         let data: any = result;
         if (data != null || data != undefined) {
@@ -71,7 +72,7 @@ export class CaseDetailComponent {
 
   public getAllEvidenceByCaseId(): void {
     this.evidences = [];
-    this.smartContractEvidenceService.getAllEvidenceByCaseId(1).subscribe(
+    this.smartContractEvidenceService.getAllEvidenceByCaseId(this.caseDetail.caseId).subscribe(
       result => {
         let data: any = result;
         if (data.length > 0) {
@@ -93,7 +94,7 @@ export class CaseDetailComponent {
   public viewEvidenceDetail(data: EvidenceNftModel): void {
     this.router.navigate(['/app/evidence/detail/' + 1]);
   }
-  
+
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
@@ -102,6 +103,11 @@ export class CaseDetailComponent {
       { label: 'Case Detail' },
     ];
 
-    this.getCaseById();
+    let caseId: number = 0;
+    this.route.params.subscribe(params => {
+      caseId = parseInt(params['id']);
+    });
+
+    this.getCaseById(caseId);
   }
 }

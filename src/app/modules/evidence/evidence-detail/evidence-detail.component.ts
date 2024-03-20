@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 import { EvidenceNftModel } from '../../../models/evidence-nft.model';
@@ -20,6 +20,7 @@ export class EvidenceDetailComponent {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     public decimalPipe: DecimalPipe,
     private smartContractEvidenceService: SmartContractEvidenceService,
     private smartContractVoteService: SmartContractVoteService,
@@ -39,9 +40,9 @@ export class EvidenceDetailComponent {
 
   executionExtrinsicsStatus: ExecuteExtrinsicsStatusModel | undefined;
 
-  public getEvidenceById(): void {
+  public getEvidenceById(evidenceId: number): void {
     this.evidenceDetail = new EvidenceNftModel() || undefined;
-    this.smartContractEvidenceService.getEvidenceById(1).subscribe(
+    this.smartContractEvidenceService.getEvidenceById(evidenceId).subscribe(
       result => {
         let data: any = result;
         if (data != null || data != undefined) {
@@ -55,6 +56,7 @@ export class EvidenceDetailComponent {
           };
         }
 
+        // this is supposedly votes
         this.getAllVoter();
       }
     )
@@ -88,6 +90,11 @@ export class EvidenceDetailComponent {
       { label: 'Evidence Detail' },
     ];
 
-    this.getEvidenceById();
+    let evidenceId: number = 0;
+    this.route.params.subscribe(params => {
+      evidenceId = parseInt(params['id']);
+    });
+
+    this.getEvidenceById(evidenceId);
   }
 }

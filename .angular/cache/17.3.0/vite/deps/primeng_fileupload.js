@@ -1,27 +1,35 @@
 import {
-  CheckIcon
-} from "./chunk-Z4KI75BR.js";
+  ProgressBar,
+  ProgressBarModule
+} from "./chunk-APBSJ5KF.js";
 import {
-  TimesIcon
-} from "./chunk-AG4FGLKC.js";
+  CheckIcon
+} from "./chunk-A7K3MTCD.js";
 import {
   PlusIcon
-} from "./chunk-OWALL6XO.js";
+} from "./chunk-G5GLPHMU.js";
+import {
+  TimesIcon
+} from "./chunk-ARIZ4KA7.js";
 import {
   Button,
   ButtonDirective,
   ButtonModule
-} from "./chunk-XKIP7FJC.js";
-import {
-  BaseIcon
-} from "./chunk-2B4KAZG7.js";
+} from "./chunk-H3DT6EUO.js";
+import "./chunk-7AVJX33F.js";
 import {
   Ripple,
   RippleModule
-} from "./chunk-Q6AWF5GZ.js";
+} from "./chunk-MIKU3NKW.js";
 import {
   DomHandler
 } from "./chunk-EK2YCWCT.js";
+import {
+  TimesCircleIcon
+} from "./chunk-TMBJXY6J.js";
+import {
+  BaseIcon
+} from "./chunk-YCE7AVZB.js";
 import {
   MessageService,
   PrimeNGConfig,
@@ -29,21 +37,21 @@ import {
   SharedModule,
   TranslationKeys,
   UniqueComponentId
-} from "./chunk-ZOVINFHH.js";
+} from "./chunk-GKXWE7E4.js";
 import {
   animate,
   style,
   transition,
   trigger
-} from "./chunk-Y5CQERZG.js";
+} from "./chunk-QIIIOCHU.js";
 import {
   DomSanitizer
-} from "./chunk-VTMNOWCS.js";
+} from "./chunk-2JYBFHPR.js";
 import {
   HttpClient,
   HttpClientModule,
   HttpEventType
-} from "./chunk-EWUTYZIZ.js";
+} from "./chunk-HG3MNM4S.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -53,7 +61,7 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-O7XUZQB5.js";
+} from "./chunk-WYZWYAPZ.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -104,17 +112,15 @@ import {
   ɵɵrestoreView,
   ɵɵsanitizeHtml,
   ɵɵsanitizeUrl,
-  ɵɵstyleProp,
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵtext,
   ɵɵtextInterpolate,
-  ɵɵtextInterpolate2,
   ɵɵviewQuery
-} from "./chunk-PK6LRLNG.js";
+} from "./chunk-2G7AIO2N.js";
 import {
   timer
-} from "./chunk-62N25QID.js";
+} from "./chunk-WSA2QMXP.js";
 import "./chunk-QMAMURKP.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-upload.mjs
@@ -319,76 +325,6 @@ var InfoCircleIcon = class _InfoCircleIcon extends BaseIcon {
                     fill-rule="evenodd"
                     clip-rule="evenodd"
                     d="M3.11101 12.8203C4.26215 13.5895 5.61553 14 7 14C8.85652 14 10.637 13.2625 11.9497 11.9497C13.2625 10.637 14 8.85652 14 7C14 5.61553 13.5895 4.26215 12.8203 3.11101C12.0511 1.95987 10.9579 1.06266 9.67879 0.532846C8.3997 0.00303296 6.99224 -0.13559 5.63437 0.134506C4.2765 0.404603 3.02922 1.07129 2.05026 2.05026C1.07129 3.02922 0.404603 4.2765 0.134506 5.63437C-0.13559 6.99224 0.00303296 8.3997 0.532846 9.67879C1.06266 10.9579 1.95987 12.0511 3.11101 12.8203ZM3.75918 2.14976C4.71846 1.50879 5.84628 1.16667 7 1.16667C8.5471 1.16667 10.0308 1.78125 11.1248 2.87521C12.2188 3.96918 12.8333 5.45291 12.8333 7C12.8333 8.15373 12.4912 9.28154 11.8502 10.2408C11.2093 11.2001 10.2982 11.9478 9.23232 12.3893C8.16642 12.8308 6.99353 12.9463 5.86198 12.7212C4.73042 12.4962 3.69102 11.9406 2.87521 11.1248C2.05941 10.309 1.50384 9.26958 1.27876 8.13803C1.05367 7.00647 1.16919 5.83358 1.61071 4.76768C2.05222 3.70178 2.79989 2.79074 3.75918 2.14976ZM7.00002 4.8611C6.84594 4.85908 6.69873 4.79698 6.58977 4.68801C6.48081 4.57905 6.4187 4.43185 6.41669 4.27776V3.88888C6.41669 3.73417 6.47815 3.58579 6.58754 3.4764C6.69694 3.367 6.84531 3.30554 7.00002 3.30554C7.15473 3.30554 7.3031 3.367 7.4125 3.4764C7.52189 3.58579 7.58335 3.73417 7.58335 3.88888V4.27776C7.58134 4.43185 7.51923 4.57905 7.41027 4.68801C7.30131 4.79698 7.1541 4.85908 7.00002 4.8611ZM7.00002 10.6945C6.84594 10.6925 6.69873 10.6304 6.58977 10.5214C6.48081 10.4124 6.4187 10.2652 6.41669 10.1111V6.22225C6.41669 6.06754 6.47815 5.91917 6.58754 5.80977C6.69694 5.70037 6.84531 5.63892 7.00002 5.63892C7.15473 5.63892 7.3031 5.70037 7.4125 5.80977C7.52189 5.91917 7.58335 6.06754 7.58335 6.22225V10.1111C7.58134 10.2652 7.51923 10.4124 7.41027 10.5214C7.30131 10.6304 7.1541 10.6925 7.00002 10.6945Z"
-                    fill="currentColor"
-                />
-            </g>
-            <defs>
-                <clipPath [id]="pathId">
-                    <rect width="14" height="14" fill="white" />
-                </clipPath>
-            </defs>
-        </svg>
-    `
-    }]
-  }], null, null);
-})();
-
-// node_modules/primeng/fesm2022/primeng-icons-timescircle.mjs
-var TimesCircleIcon = class _TimesCircleIcon extends BaseIcon {
-  pathId;
-  ngOnInit() {
-    this.pathId = "url(#" + UniqueComponentId() + ")";
-  }
-  static ɵfac = /* @__PURE__ */ (() => {
-    let ɵTimesCircleIcon_BaseFactory;
-    return function TimesCircleIcon_Factory(t) {
-      return (ɵTimesCircleIcon_BaseFactory || (ɵTimesCircleIcon_BaseFactory = ɵɵgetInheritedFactory(_TimesCircleIcon)))(t || _TimesCircleIcon);
-    };
-  })();
-  static ɵcmp = ɵɵdefineComponent({
-    type: _TimesCircleIcon,
-    selectors: [["TimesCircleIcon"]],
-    standalone: true,
-    features: [ɵɵInheritDefinitionFeature, ɵɵStandaloneFeature],
-    decls: 6,
-    vars: 7,
-    consts: [["width", "14", "height", "14", "viewBox", "0 0 14 14", "fill", "none", "xmlns", "http://www.w3.org/2000/svg"], ["fill-rule", "evenodd", "clip-rule", "evenodd", "d", "M7 14C5.61553 14 4.26215 13.5895 3.11101 12.8203C1.95987 12.0511 1.06266 10.9579 0.532846 9.67879C0.00303296 8.3997 -0.13559 6.99224 0.134506 5.63437C0.404603 4.2765 1.07129 3.02922 2.05026 2.05026C3.02922 1.07129 4.2765 0.404603 5.63437 0.134506C6.99224 -0.13559 8.3997 0.00303296 9.67879 0.532846C10.9579 1.06266 12.0511 1.95987 12.8203 3.11101C13.5895 4.26215 14 5.61553 14 7C14 8.85652 13.2625 10.637 11.9497 11.9497C10.637 13.2625 8.85652 14 7 14ZM7 1.16667C5.84628 1.16667 4.71846 1.50879 3.75918 2.14976C2.79989 2.79074 2.05222 3.70178 1.61071 4.76768C1.16919 5.83358 1.05367 7.00647 1.27876 8.13803C1.50384 9.26958 2.05941 10.309 2.87521 11.1248C3.69102 11.9406 4.73042 12.4962 5.86198 12.7212C6.99353 12.9463 8.16642 12.8308 9.23232 12.3893C10.2982 11.9478 11.2093 11.2001 11.8502 10.2408C12.4912 9.28154 12.8333 8.15373 12.8333 7C12.8333 5.45291 12.2188 3.96918 11.1248 2.87521C10.0308 1.78125 8.5471 1.16667 7 1.16667ZM4.66662 9.91668C4.58998 9.91704 4.51404 9.90209 4.44325 9.87271C4.37246 9.84333 4.30826 9.8001 4.2544 9.74557C4.14516 9.6362 4.0838 9.48793 4.0838 9.33335C4.0838 9.17876 4.14516 9.0305 4.2544 8.92113L6.17553 7L4.25443 5.07891C4.15139 4.96832 4.09529 4.82207 4.09796 4.67094C4.10063 4.51982 4.16185 4.37563 4.26872 4.26876C4.3756 4.16188 4.51979 4.10066 4.67091 4.09799C4.82204 4.09532 4.96829 4.15142 5.07887 4.25446L6.99997 6.17556L8.92106 4.25446C9.03164 4.15142 9.1779 4.09532 9.32903 4.09799C9.48015 4.10066 9.62434 4.16188 9.73121 4.26876C9.83809 4.37563 9.89931 4.51982 9.90198 4.67094C9.90464 4.82207 9.84855 4.96832 9.74551 5.07891L7.82441 7L9.74554 8.92113C9.85478 9.0305 9.91614 9.17876 9.91614 9.33335C9.91614 9.48793 9.85478 9.6362 9.74554 9.74557C9.69168 9.8001 9.62748 9.84333 9.55669 9.87271C9.4859 9.90209 9.40996 9.91704 9.33332 9.91668C9.25668 9.91704 9.18073 9.90209 9.10995 9.87271C9.03916 9.84333 8.97495 9.8001 8.9211 9.74557L6.99997 7.82444L5.07884 9.74557C5.02499 9.8001 4.96078 9.84333 4.88999 9.87271C4.81921 9.90209 4.74326 9.91704 4.66662 9.91668Z", "fill", "currentColor"], [3, "id"], ["width", "14", "height", "14", "fill", "white"]],
-    template: function TimesCircleIcon_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵnamespaceSVG();
-        ɵɵelementStart(0, "svg", 0)(1, "g");
-        ɵɵelement(2, "path", 1);
-        ɵɵelementEnd();
-        ɵɵelementStart(3, "defs")(4, "clipPath", 2);
-        ɵɵelement(5, "rect", 3);
-        ɵɵelementEnd()()();
-      }
-      if (rf & 2) {
-        ɵɵclassMap(ctx.getClassNames());
-        ɵɵattribute("aria-label", ctx.ariaLabel)("aria-hidden", ctx.ariaHidden)("role", ctx.role);
-        ɵɵadvance();
-        ɵɵattribute("clip-path", ctx.pathId);
-        ɵɵadvance(3);
-        ɵɵproperty("id", ctx.pathId);
-      }
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TimesCircleIcon, [{
-    type: Component,
-    args: [{
-      selector: "TimesCircleIcon",
-      standalone: true,
-      imports: [BaseIcon],
-      template: `
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.aria-label]="ariaLabel" [attr.aria-hidden]="ariaHidden" [attr.role]="role" [class]="getClassNames()">
-            <g [attr.clip-path]="pathId">
-                <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M7 14C5.61553 14 4.26215 13.5895 3.11101 12.8203C1.95987 12.0511 1.06266 10.9579 0.532846 9.67879C0.00303296 8.3997 -0.13559 6.99224 0.134506 5.63437C0.404603 4.2765 1.07129 3.02922 2.05026 2.05026C3.02922 1.07129 4.2765 0.404603 5.63437 0.134506C6.99224 -0.13559 8.3997 0.00303296 9.67879 0.532846C10.9579 1.06266 12.0511 1.95987 12.8203 3.11101C13.5895 4.26215 14 5.61553 14 7C14 8.85652 13.2625 10.637 11.9497 11.9497C10.637 13.2625 8.85652 14 7 14ZM7 1.16667C5.84628 1.16667 4.71846 1.50879 3.75918 2.14976C2.79989 2.79074 2.05222 3.70178 1.61071 4.76768C1.16919 5.83358 1.05367 7.00647 1.27876 8.13803C1.50384 9.26958 2.05941 10.309 2.87521 11.1248C3.69102 11.9406 4.73042 12.4962 5.86198 12.7212C6.99353 12.9463 8.16642 12.8308 9.23232 12.3893C10.2982 11.9478 11.2093 11.2001 11.8502 10.2408C12.4912 9.28154 12.8333 8.15373 12.8333 7C12.8333 5.45291 12.2188 3.96918 11.1248 2.87521C10.0308 1.78125 8.5471 1.16667 7 1.16667ZM4.66662 9.91668C4.58998 9.91704 4.51404 9.90209 4.44325 9.87271C4.37246 9.84333 4.30826 9.8001 4.2544 9.74557C4.14516 9.6362 4.0838 9.48793 4.0838 9.33335C4.0838 9.17876 4.14516 9.0305 4.2544 8.92113L6.17553 7L4.25443 5.07891C4.15139 4.96832 4.09529 4.82207 4.09796 4.67094C4.10063 4.51982 4.16185 4.37563 4.26872 4.26876C4.3756 4.16188 4.51979 4.10066 4.67091 4.09799C4.82204 4.09532 4.96829 4.15142 5.07887 4.25446L6.99997 6.17556L8.92106 4.25446C9.03164 4.15142 9.1779 4.09532 9.32903 4.09799C9.48015 4.10066 9.62434 4.16188 9.73121 4.26876C9.83809 4.37563 9.89931 4.51982 9.90198 4.67094C9.90464 4.82207 9.84855 4.96832 9.74551 5.07891L7.82441 7L9.74554 8.92113C9.85478 9.0305 9.91614 9.17876 9.91614 9.33335C9.91614 9.48793 9.85478 9.6362 9.74554 9.74557C9.69168 9.8001 9.62748 9.84333 9.55669 9.87271C9.4859 9.90209 9.40996 9.91704 9.33332 9.91668C9.25668 9.91704 9.18073 9.90209 9.10995 9.87271C9.03916 9.84333 8.97495 9.8001 8.9211 9.74557L6.99997 7.82444L5.07884 9.74557C5.02499 9.8001 4.96078 9.84333 4.88999 9.87271C4.81921 9.90209 4.74326 9.91704 4.66662 9.91668Z"
                     fill="currentColor"
                 />
             </g>
@@ -997,254 +933,9 @@ var MessagesModule = class _MessagesModule {
   }], null, null);
 })();
 
-// node_modules/primeng/fesm2022/primeng-progressbar.mjs
-var _c02 = (a0, a1) => ({
-  "p-progressbar p-component": true,
-  "p-progressbar-determinate": a0,
-  "p-progressbar-indeterminate": a1
-});
-var _c12 = (a0) => ({
-  $implicit: a0
-});
-function ProgressBar_div_1_div_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div");
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵstyleProp("display", ctx_r0.value != null && ctx_r0.value !== 0 ? "flex" : "none");
-    ɵɵattribute("data-pc-section", "label");
-    ɵɵadvance();
-    ɵɵtextInterpolate2("", ctx_r0.value, "", ctx_r0.unit, "");
-  }
-}
-function ProgressBar_div_1_ng_container_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementContainer(0);
-  }
-}
-function ProgressBar_div_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 3)(1, "div", 4);
-    ɵɵtemplate(2, ProgressBar_div_1_div_2_Template, 2, 5, "div", 5)(3, ProgressBar_div_1_ng_container_3_Template, 1, 0, "ng-container", 6);
-    ɵɵelementEnd()();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵstyleProp("width", ctx_r0.value + "%")("background", ctx_r0.color);
-    ɵɵattribute("data-pc-section", "value");
-    ɵɵadvance(2);
-    ɵɵproperty("ngIf", ctx_r0.showValue && !ctx_r0.contentTemplate);
-    ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.contentTemplate)("ngTemplateOutletContext", ɵɵpureFunction1(8, _c12, ctx_r0.value));
-  }
-}
-function ProgressBar_div_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 7);
-    ɵɵelement(1, "div", 8);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵattribute("data-pc-section", "container");
-    ɵɵadvance();
-    ɵɵstyleProp("background", ctx_r0.color);
-    ɵɵattribute("data-pc-section", "value");
-  }
-}
-var ProgressBar = class _ProgressBar {
-  /**
-   * Current value of the progress.
-   * @group Props
-   */
-  value;
-  /**
-   * Whether to display the progress bar value.
-   * @group Props
-   */
-  showValue = true;
-  /**
-   * Class of the element.
-   * @group Props
-   */
-  styleClass;
-  /**
-   * Inline style of the element.
-   * @group Props
-   */
-  style;
-  /**
-   * Unit sign appended to the value.
-   * @group Props
-   */
-  unit = "%";
-  /**
-   * Defines the mode of the progress
-   * @group Props
-   */
-  mode = "determinate";
-  /**
-   * Color for the background of the progress.
-   * @group Props
-   */
-  color;
-  templates;
-  contentTemplate;
-  ngAfterContentInit() {
-    this.templates?.forEach((item) => {
-      switch (item.getType()) {
-        case "content":
-          this.contentTemplate = item.template;
-          break;
-        default:
-          this.contentTemplate = item.template;
-      }
-    });
-  }
-  static ɵfac = function ProgressBar_Factory(t) {
-    return new (t || _ProgressBar)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _ProgressBar,
-    selectors: [["p-progressBar"]],
-    contentQueries: function ProgressBar_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, PrimeTemplate, 4);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.templates = _t);
-      }
-    },
-    hostAttrs: [1, "p-element"],
-    inputs: {
-      value: "value",
-      showValue: "showValue",
-      styleClass: "styleClass",
-      style: "style",
-      unit: "unit",
-      mode: "mode",
-      color: "color"
-    },
-    decls: 3,
-    vars: 14,
-    consts: [["role", "progressbar", 3, "ngStyle", "ngClass"], ["class", "p-progressbar-value p-progressbar-value-animate", "style", "display:flex", 3, "width", "background", 4, "ngIf"], ["class", "p-progressbar-indeterminate-container", 4, "ngIf"], [1, "p-progressbar-value", "p-progressbar-value-animate", 2, "display", "flex"], [1, "p-progressbar-label"], [3, "display", 4, "ngIf"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "p-progressbar-indeterminate-container"], [1, "p-progressbar-value", "p-progressbar-value-animate"]],
-    template: function ProgressBar_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementStart(0, "div", 0);
-        ɵɵtemplate(1, ProgressBar_div_1_Template, 4, 10, "div", 1)(2, ProgressBar_div_2_Template, 2, 4, "div", 2);
-        ɵɵelementEnd();
-      }
-      if (rf & 2) {
-        ɵɵclassMap(ctx.styleClass);
-        ɵɵproperty("ngStyle", ctx.style)("ngClass", ɵɵpureFunction2(11, _c02, ctx.mode === "determinate", ctx.mode === "indeterminate"));
-        ɵɵattribute("aria-valuemin", 0)("aria-valuenow", ctx.value)("aria-valuemax", 100)("data-pc-name", "progressbar")("data-pc-section", "root");
-        ɵɵadvance();
-        ɵɵproperty("ngIf", ctx.mode === "determinate");
-        ɵɵadvance();
-        ɵɵproperty("ngIf", ctx.mode === "indeterminate");
-      }
-    },
-    dependencies: [NgClass, NgIf, NgTemplateOutlet, NgStyle],
-    styles: ['@layer primeng{.p-progressbar{position:relative;overflow:hidden}.p-progressbar-determinate .p-progressbar-value{height:100%;width:0%;position:absolute;display:none;border:0 none;display:flex;align-items:center;justify-content:center;overflow:hidden}.p-progressbar-determinate .p-progressbar-label{display:inline-flex}.p-progressbar-determinate .p-progressbar-value-animate{transition:width 1s ease-in-out}.p-progressbar-indeterminate .p-progressbar-value:before{content:"";position:absolute;background-color:inherit;top:0;left:0;bottom:0;will-change:left,right;-webkit-animation:p-progressbar-indeterminate-anim 2.1s cubic-bezier(.65,.815,.735,.395) infinite;animation:p-progressbar-indeterminate-anim 2.1s cubic-bezier(.65,.815,.735,.395) infinite}.p-progressbar-indeterminate .p-progressbar-value:after{content:"";position:absolute;background-color:inherit;top:0;left:0;bottom:0;will-change:left,right;-webkit-animation:p-progressbar-indeterminate-anim-short 2.1s cubic-bezier(.165,.84,.44,1) infinite;animation:p-progressbar-indeterminate-anim-short 2.1s cubic-bezier(.165,.84,.44,1) infinite;-webkit-animation-delay:1.15s;animation-delay:1.15s}}@-webkit-keyframes p-progressbar-indeterminate-anim{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@keyframes p-progressbar-indeterminate-anim{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@-webkit-keyframes p-progressbar-indeterminate-anim-short{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}@keyframes p-progressbar-indeterminate-anim-short{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}\n'],
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ProgressBar, [{
-    type: Component,
-    args: [{
-      selector: "p-progressBar",
-      template: `
-        <div
-            role="progressbar"
-            [class]="styleClass"
-            [ngStyle]="style"
-            [attr.aria-valuemin]="0"
-            [attr.aria-valuenow]="value"
-            [attr.aria-valuemax]="100"
-            [attr.data-pc-name]="'progressbar'"
-            [attr.data-pc-section]="'root'"
-            [ngClass]="{ 'p-progressbar p-component': true, 'p-progressbar-determinate': mode === 'determinate', 'p-progressbar-indeterminate': mode === 'indeterminate' }"
-        >
-            <div *ngIf="mode === 'determinate'" class="p-progressbar-value p-progressbar-value-animate" [style.width]="value + '%'" style="display:flex" [style.background]="color" [attr.data-pc-section]="'value'">
-                <div class="p-progressbar-label">
-                    <div *ngIf="showValue && !contentTemplate" [style.display]="value != null && value !== 0 ? 'flex' : 'none'" [attr.data-pc-section]="'label'">{{ value }}{{ unit }}</div>
-                    <ng-container *ngTemplateOutlet="contentTemplate; context: { $implicit: value }"></ng-container>
-                </div>
-            </div>
-            <div *ngIf="mode === 'indeterminate'" class="p-progressbar-indeterminate-container" [attr.data-pc-section]="'container'">
-                <div class="p-progressbar-value p-progressbar-value-animate" [style.background]="color" [attr.data-pc-section]="'value'"></div>
-            </div>
-        </div>
-    `,
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      encapsulation: ViewEncapsulation$1.None,
-      host: {
-        class: "p-element"
-      },
-      styles: ['@layer primeng{.p-progressbar{position:relative;overflow:hidden}.p-progressbar-determinate .p-progressbar-value{height:100%;width:0%;position:absolute;display:none;border:0 none;display:flex;align-items:center;justify-content:center;overflow:hidden}.p-progressbar-determinate .p-progressbar-label{display:inline-flex}.p-progressbar-determinate .p-progressbar-value-animate{transition:width 1s ease-in-out}.p-progressbar-indeterminate .p-progressbar-value:before{content:"";position:absolute;background-color:inherit;top:0;left:0;bottom:0;will-change:left,right;-webkit-animation:p-progressbar-indeterminate-anim 2.1s cubic-bezier(.65,.815,.735,.395) infinite;animation:p-progressbar-indeterminate-anim 2.1s cubic-bezier(.65,.815,.735,.395) infinite}.p-progressbar-indeterminate .p-progressbar-value:after{content:"";position:absolute;background-color:inherit;top:0;left:0;bottom:0;will-change:left,right;-webkit-animation:p-progressbar-indeterminate-anim-short 2.1s cubic-bezier(.165,.84,.44,1) infinite;animation:p-progressbar-indeterminate-anim-short 2.1s cubic-bezier(.165,.84,.44,1) infinite;-webkit-animation-delay:1.15s;animation-delay:1.15s}}@-webkit-keyframes p-progressbar-indeterminate-anim{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@keyframes p-progressbar-indeterminate-anim{0%{left:-35%;right:100%}60%{left:100%;right:-90%}to{left:100%;right:-90%}}@-webkit-keyframes p-progressbar-indeterminate-anim-short{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}@keyframes p-progressbar-indeterminate-anim-short{0%{left:-200%;right:100%}60%{left:107%;right:-8%}to{left:107%;right:-8%}}\n']
-    }]
-  }], null, {
-    value: [{
-      type: Input
-    }],
-    showValue: [{
-      type: Input
-    }],
-    styleClass: [{
-      type: Input
-    }],
-    style: [{
-      type: Input
-    }],
-    unit: [{
-      type: Input
-    }],
-    mode: [{
-      type: Input
-    }],
-    color: [{
-      type: Input
-    }],
-    templates: [{
-      type: ContentChildren,
-      args: [PrimeTemplate]
-    }]
-  });
-})();
-var ProgressBarModule = class _ProgressBarModule {
-  static ɵfac = function ProgressBarModule_Factory(t) {
-    return new (t || _ProgressBarModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _ProgressBarModule,
-    declarations: [ProgressBar],
-    imports: [CommonModule],
-    exports: [ProgressBar]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    imports: [CommonModule]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ProgressBarModule, [{
-    type: NgModule,
-    args: [{
-      imports: [CommonModule],
-      exports: [ProgressBar],
-      declarations: [ProgressBar]
-    }]
-  }], null, null);
-})();
-
 // node_modules/primeng/fesm2022/primeng-fileupload.mjs
-var _c03 = ["advancedfileinput"];
-var _c13 = ["basicfileinput"];
+var _c02 = ["advancedfileinput"];
+var _c12 = ["basicfileinput"];
 var _c2 = ["content"];
 var _c3 = (a0, a1) => ({
   "p-focus": a0,
@@ -2562,8 +2253,8 @@ var FileUpload = class _FileUpload {
     },
     viewQuery: function FileUpload_Query(rf, ctx) {
       if (rf & 1) {
-        ɵɵviewQuery(_c03, 5);
-        ɵɵviewQuery(_c13, 5);
+        ɵɵviewQuery(_c02, 5);
+        ɵɵviewQuery(_c12, 5);
         ɵɵviewQuery(_c2, 5);
       }
       if (rf & 2) {

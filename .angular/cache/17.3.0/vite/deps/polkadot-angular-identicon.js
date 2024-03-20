@@ -1,12 +1,12 @@
 import {
   BrowserModule,
   DomSanitizer
-} from "./chunk-VTMNOWCS.js";
-import "./chunk-EWUTYZIZ.js";
+} from "./chunk-2JYBFHPR.js";
+import "./chunk-HG3MNM4S.js";
 import {
   CommonModule,
   NgStyle
-} from "./chunk-O7XUZQB5.js";
+} from "./chunk-WYZWYAPZ.js";
 import {
   Component,
   Input,
@@ -19,8 +19,8 @@ import {
   ɵɵelement,
   ɵɵproperty,
   ɵɵsanitizeHtml
-} from "./chunk-PK6LRLNG.js";
-import "./chunk-62N25QID.js";
+} from "./chunk-2G7AIO2N.js";
+import "./chunk-WSA2QMXP.js";
 import {
   blake2AsU8a,
   decodeAddress

@@ -31,7 +31,7 @@ export class SmartContractVoteService {
     return new Observable<VoterModel[]>((observer) => {
       let voters: VoterModel[] = [];
 
-      this.httpClient.get(this.defaultApiEndpoint + '/api/smart-contract/voter/get/all-voter', this.options).subscribe(
+      this.httpClient.get(this.defaultApiEndpoint + '/api/smart-contract/vote/get/all-voter', this.options).subscribe(
         response => {
           let results: any = response;
 
@@ -61,7 +61,7 @@ export class SmartContractVoteService {
     return new Observable<VoterModel | undefined>((observer) => {
       let voter: VoterModel = new VoterModel() || undefined;
 
-      this.httpClient.get(this.defaultApiEndpoint + '/api/smart-contract/voter/get/voter/by-id/' + id, this.options).subscribe(
+      this.httpClient.get(this.defaultApiEndpoint + '/api/smart-contract/vote/get/voter/by-id/' + id, this.options).subscribe(
         response => {
           let results: any = response;
 
@@ -87,7 +87,7 @@ export class SmartContractVoteService {
 
   public setVoterExtrinsic(data: VoterModel): Observable<any> {
     return new Observable<any>((observer) => {
-      this.httpClient.post(this.defaultApiEndpoint + "/api/smart-contract/voter/extrinsic/set-voter", JSON.stringify(data), this.options).subscribe(
+      this.httpClient.post(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/set-voter", JSON.stringify(data), this.options).subscribe(
         response => {
           let results: any = response;
 

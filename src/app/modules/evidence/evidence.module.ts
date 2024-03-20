@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -11,6 +12,12 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TagModule } from 'primeng/tag';
+import { ChipModule } from 'primeng/chip';
+import { ButtonModule } from 'primeng/button';
 
 import { EvidenceRoutingModule } from './evidence-routing.module';
 import { EvidenceComponent } from './evidence.component';
@@ -23,6 +30,8 @@ import { EvidenceDetailComponent } from './evidence-detail/evidence-detail.compo
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     EvidenceRoutingModule,
     BreadcrumbModule,
     ToolbarModule,
@@ -33,7 +42,16 @@ import { EvidenceDetailComponent } from './evidence-detail/evidence-detail.compo
     InputGroupAddonModule,
     InputTextareaModule,
     TableModule,
-    FileUploadModule
+    FileUploadModule,
+    DropdownModule,
+    DialogModule,
+    ProgressSpinnerModule,
+    TagModule,
+    ChipModule,
+    ButtonModule
+  ],
+  providers: [
+    DecimalPipe
   ]
 })
 export class EvidenceModule { }

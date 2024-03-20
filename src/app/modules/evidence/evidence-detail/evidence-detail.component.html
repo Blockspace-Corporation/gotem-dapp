@@ -28,7 +28,7 @@
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
-                                <input pInputText id="" />
+                                <input pInputText id="" [(ngModel)]="evidenceDetail.caseId" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
@@ -37,30 +37,29 @@
                                 <input pInputText id="" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-12">
+                        <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Evidence Number</label>
                                 <input pInputText id="" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-12 lg:col-12">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Description:</label>
-                                <textarea rows="5" cols="30" pInputTextarea class="w-full"></textarea>
-                            </div>
-                        </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner:</label>
-                                <input pInputText id="" />
+                                <input pInputText id="" [(ngModel)]="evidenceDetail.owner" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-6">
+                        <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
-                                <label for="">Status</label>
-                                <input pInputText id="" />
+                                <label for="">Description:</label>
+                                <textarea rows="5" cols="30" pInputTextarea class="w-full"
+                                    [(ngModel)]="evidenceDetail.description"></textarea>
                             </div>
                         </div>
+                        <div class="col-12 md:col-6 lg:col-6 mt-2">
+                            <p-chip label="{{evidenceDetail.status}}" icon="pi pi-info-circle"></p-chip>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6"></div>
                     </div>
                 </p-panel>
             </div>
@@ -108,21 +107,23 @@
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Voters">
                 <div class="card">
-                    <p-table [value]="evidences" [tableStyle]="{ 'min-width': '50rem' }">
+                    <p-table styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
+                        [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Voter</th>
                                 <th>Vote Credit</th>
                                 <th>Vote Result</th>
                                 <th>Distribution Result</th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" let-userasset>
+                        <ng-template pTemplate="body" let-voter>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <span class="p-column-title">Vote Credit</span>
+                                    {{decimalPipe.transform(voter.voteCredit) || "0"}}
+                                </td>
+                                <td><span class="p-column-title">Vote Result</span>-</td>
+                                <td><span class="p-column-title">Distribution Result</span>-</td>
                             </tr>
                         </ng-template>
                     </p-table>

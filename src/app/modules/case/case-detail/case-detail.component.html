@@ -34,27 +34,33 @@
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Title</label>
-                                <input pInputText id="" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-12 lg:col-12">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Description:</label>
-                                <textarea rows="5" cols="30" pInputTextarea class="w-full"></textarea>
+                                <input pInputText id="" [(ngModel)]="caseDetail.title" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Category:</label>
-                                <input pInputText id="" />
+                                <p-dropdown [options]="categories" [(ngModel)]="caseDetail.category" [showClear]="true"
+                                    placeholder="Select Category" [styleClass]="'w-full'"></p-dropdown>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner</label>
-                                <input pInputText id="" />
+                                <input pInputText id="" [(ngModel)]="caseDetail.owner" />
                             </div>
                         </div>
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Description:</label>
+                                <textarea rows="5" cols="30" pInputTextarea class="w-full"
+                                    [(ngModel)]="caseDetail.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6 mt-2">
+                            <p-chip label="{{caseDetail.status}}" icon="pi pi-info-circle"></p-chip>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6"></div>
                     </div>
                 </p-panel>
             </div>
@@ -80,30 +86,32 @@
     </div>
 </div>
 <div class="w-full mb-3">
-    <div class="grid">
-        <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Evidences">
-                <div class="card">
-                    <p-table [value]="evidences" [tableStyle]="{ 'min-width': '50rem' }">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Evidence No.</th>
-                                <th>Description</th>
-                                <th>Owner</th>
-                                <th>Votes</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-userasset>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </p-panel>
+    <p-panel header="Evidences">
+        <div class="card">
+            <p-table styleClass="p-datatable-striped" [value]="evidences" [responsive]="true"
+                [tableStyle]="{ 'min-width': '10rem' }">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th>View</th>
+                        <th>Evidence No.</th>
+                        <th>Description</th>
+                        <th>Owner</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-evidence let-columns="columns">
+                    <tr>
+                        <td>
+                            <button type="button" pButton class="p-button p-button-rounded p-button-sm"
+                                (click)="viewEvidenceDetail(evidence)">
+                                <i class="pi pi-fw pi-eye"></i> View
+                            </button>
+                        </td>
+                        <td><span class="p-column-title">Evidence No.</span>-</td>
+                        <td><span class="p-column-title">Description</span>{{evidence.description}}</td>
+                        <td><span class="p-column-title">Owner</span>{{evidence.owner}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </div>
-    </div>
+    </p-panel>
 </div>

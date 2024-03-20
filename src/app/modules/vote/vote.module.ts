@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -9,6 +10,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TagModule } from 'primeng/tag';
+import { ChipModule } from 'primeng/chip';
+import { ButtonModule } from 'primeng/button';
 
 import { VoteRoutingModule } from './vote-routing.module';
 import { VoteComponent } from './vote.component';
@@ -19,6 +25,8 @@ import { VoteComponent } from './vote.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     VoteRoutingModule,
     BreadcrumbModule,
     ToolbarModule,
@@ -27,7 +35,15 @@ import { VoteComponent } from './vote.component';
     InputTextModule,
     InputGroupModule,
     InputGroupAddonModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    ProgressSpinnerModule,
+    TagModule,
+    ChipModule,
+    ButtonModule
+  ],
+  providers: [
+    DecimalPipe
   ]
 })
 export class VoteModule { }

@@ -28,5 +28,5 @@ jobs:
           mkdir ~/.ssh
           echo -e "${{ secrets.STAGING_PRIVATE_KEY }}" > ~/.ssh/dec-keypair
           chmod 400 ~/.ssh/dec-keypair
-          rsync -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/dec-keypair" -r dist/* ${{ secrets.STAGING_USERNAME }}@${{ secrets.STAGING_HOST }}:${{ secrets.STAGING_PATH }}
+          rsync -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/dec-keypair" -r dist/browser/* ${{ secrets.STAGING_USERNAME }}@${{ secrets.STAGING_HOST }}:${{ secrets.STAGING_PATH }}
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/dec-keypair ${{ secrets.STAGING_USERNAME }}@${{ secrets.STAGING_HOST }} 'sudo systemctl restart nginx'

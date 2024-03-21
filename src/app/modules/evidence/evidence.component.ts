@@ -108,7 +108,7 @@ export class EvidenceComponent {
   }
 
   public viewEvidenceDetail(data: EvidenceNftModel): void {
-    this.router.navigate(['/app/evidence/detail/' + 1]);
+    this.router.navigate(['/app/evidence/detail/' + data.evidenceId]);
   }
   
   public padZeroes(number: number, length: number): string {
@@ -122,7 +122,7 @@ export class EvidenceComponent {
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
-      { label: 'Dashboard' },
+      { label: 'Dashboard', routerLink: '/app/dashboard' },
       { label: 'Evidence' }
     ];
 

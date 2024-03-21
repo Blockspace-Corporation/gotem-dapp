@@ -117,7 +117,7 @@ export class CaseComponent {
   }
 
   public viewCaseDetail(data: CaseNftModel): void {
-    this.router.navigate(['/app/case/detail/' + 1]);
+    this.router.navigate(['/app/case/detail/' + data.caseId]);
   }
 
   public padZeroes(number: number, length: number): string {
@@ -127,11 +127,11 @@ export class CaseComponent {
     }
     return str;
   }
-  
+
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
-      { label: 'Dashboard' },
+      { label: 'Dashboard', routerLink: '/app/dashboard' },
       { label: 'Case' }
     ];
 

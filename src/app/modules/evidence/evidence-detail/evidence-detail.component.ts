@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { EvidenceNftModel } from '../../../models/evidence-nft.model';
 import { SmartContractEvidenceService } from '../../../services/smart-contract-evidence/smart-contract-evidence.service';
-import { VoterModel } from '../../../models/voter.model';
+import { VoteModel } from '../../../models/vote.model';
 import { SmartContractVoteService } from '../../../services/smart-contract-vote/smart-contract-vote.service';
 import { ExtrinsicService } from '../../../services/extrinsic/extrinsic.service';
 import { ExecuteExtrinsicsStatusModel } from '../../../models/execution-extrinsics-status.model';
@@ -12,7 +13,8 @@ import { ExecuteExtrinsicsStatusModel } from '../../../models/execution-extrinsi
 @Component({
   selector: 'app-evidence-detail',
   templateUrl: './evidence-detail.component.html',
-  styleUrl: './evidence-detail.component.scss'
+  styleUrl: './evidence-detail.component.scss',
+  providers: [ConfirmationService, MessageService]
 })
 export class EvidenceDetailComponent {
   breadcrumbHome: MenuItem | undefined;
@@ -22,6 +24,8 @@ export class EvidenceDetailComponent {
     private router: Router,
     private route: ActivatedRoute,
     public decimalPipe: DecimalPipe,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
     private smartContractEvidenceService: SmartContractEvidenceService,
     private smartContractVoteService: SmartContractVoteService,
     private extrinsicService: ExtrinsicService
@@ -35,7 +39,9 @@ export class EvidenceDetailComponent {
   ];
   evidenceDetail: EvidenceNftModel = new EvidenceNftModel();
   caseNumber: string = this.padZeroes(this.evidenceDetail.caseId, 10);
-  voters: VoterModel[] = [];
+  votes: VoteModel[] = [];
+
+  confirmedBurn: boolean = false;
 
   showProcessModal: boolean = false;
   isProcessing: boolean = false;
@@ -60,26 +66,27 @@ export class EvidenceDetailComponent {
           this.caseNumber = this.padZeroes(this.evidenceDetail.caseId, 10);
         }
 
-        // this is supposedly votes
-        this.getAllVoter();
+        this.getAllVoteByEvidenceId();
       },
       error => { }
     )
   }
 
-  public getAllVoter(): void {
-    this.voters = [];
-    this.smartContractVoteService.getAllVoter().subscribe(
+  public getAllVoteByEvidenceId(): void {
+    this.votes = [];
+    this.smartContractVoteService.getAllVoteByEvidenceId(this.evidenceDetail.evidenceId).subscribe(
       result => {
         let data: any = result;
         if (data.length > 0) {
           for (let i = 0; i < data.length; i++) {
-            this.voters.push({
-              voterId: data[i].voterId,
+            this.votes.push({
+              voteId: data[i].voteId,
               caseId: data[i].caseId,
+              evidenceId: data[i].evidenceId,
               voter: data[i].voter,
-              amountHold: data[i].amountHold,
-              voteCredit: data[i].voteCredit,
+              yesCredit: data[i].yesCredit,
+              noCredit: data[i].noCredit,
+              destributionReward: data[i].destributionReward
             });
           }
         }
@@ -88,6 +95,70 @@ export class EvidenceDetailComponent {
       },
       error => { }
     )
+  }
+
+  public updateEvidenceExtrinsic(): void {
+    this.confirmedBurn = false;
+    this.smartContractEvidenceService.updateEvidenceExtrinsic(this.evidenceDetail.evidenceId, this.evidenceDetail).subscribe(
+      result => {
+        let data: any = result;
+        this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+      }
+    );
+  }
+
+  public burnEvidenceExtrinsic(): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to burn this evidence?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptButtonStyleClass: "p-button-danger",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        this.confirmedBurn = true;
+        this.smartContractEvidenceService.burnEvidenceExtrinsic(this.evidenceDetail.evidenceId).subscribe(
+          result => {
+            let data: any = result;
+            this.signAndSendExtrinsics(data);
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+          }
+        );
+      }
+    });
+  }
+
+  public signAndSendExtrinsics(data: any): void {
+    this.extrinsicService.signExtrinsics(data).then(
+      (signedExtrinsics: any) => {
+        this.showProcessModal = true;
+
+        this.extrinsicService.executeExtrinsics(signedExtrinsics).subscribe(
+          results => {
+            this.executionExtrinsicsStatus = {
+              message: results.message,
+              isError: results.isError
+            }
+
+            if (this.confirmedBurn == true) {
+              setTimeout(() => {
+                this.router.navigate(['/app/evidence']);
+              }, 1000);
+            }
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+            this.showProcessModal = false;
+          }
+        );
+      }
+    );
   }
 
   public padZeroes(number: number, length: number): string {
@@ -101,8 +172,8 @@ export class EvidenceDetailComponent {
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
-      { label: 'Dashboard' },
-      { label: 'Evidence' },
+      { label: 'Dashboard', routerLink: '/app/dashboard' },
+      { label: 'Evidence', routerLink: '/app/evidence' },
       { label: 'Evidence Detail' },
     ];
 

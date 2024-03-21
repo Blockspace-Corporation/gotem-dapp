@@ -139,4 +139,38 @@ export class SmartContractEvidenceService {
       );
     });
   }
+
+  public updateEvidenceExtrinsic(id: number, data: EvidenceNftModel): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.put(this.defaultApiEndpoint + "/api/smart-contract/evidence/extrinsic/update-evidence/" + id, JSON.stringify(data), this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
+  }
+
+  public burnEvidenceExtrinsic(id: number): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.delete(this.defaultApiEndpoint + "/api/smart-contract/evidence/extrinsic/burn-evidence/" + id, this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
+  }
 }

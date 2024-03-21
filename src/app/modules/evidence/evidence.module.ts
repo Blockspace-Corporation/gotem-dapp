@@ -19,6 +19,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { TagModule } from 'primeng/tag';
 import { ChipModule } from 'primeng/chip';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 
 import { EvidenceRoutingModule } from './evidence-routing.module';
@@ -52,6 +53,7 @@ import { EvidenceDetailComponent } from './evidence-detail/evidence-detail.compo
     TagModule,
     ChipModule,
     ButtonModule,
+    ConfirmDialogModule,
     ToastModule
   ],
   providers: [

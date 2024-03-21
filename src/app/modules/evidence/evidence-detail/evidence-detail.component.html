@@ -30,12 +30,12 @@
     <div class="grid" *ngIf="!isLoading">
         <div class="col-12 md:col-6 lg:col-6">
             <div class="w-full">
-                <p-panel header="Evidence Number:&nbsp;&nbsp;{{evidenceDetail.evidenceId}}">
+                <p-panel header="Evidence Number:&nbsp;&nbsp;{{padZeroes(evidenceDetail.evidenceId, 10)}}">
                     <div class="grid">
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
-                                <input pInputText id="" [(ngModel)]="evidenceDetail.caseId" [readonly]="true" />
+                                <input pInputText id="" [(ngModel)]="caseNumber" [readonly]="true" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
@@ -109,7 +109,10 @@
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Voters">
                 <div class="card">
-                    <p-table styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
+                    <p-table [paginator]="true" [rows]="10"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]"
+                        styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>

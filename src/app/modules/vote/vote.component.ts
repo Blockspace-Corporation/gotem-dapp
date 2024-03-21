@@ -33,6 +33,8 @@ export class VoteComponent {
   votes: VoteModel[] = [];
   showNewVoteModal: boolean = false;
   vote: VoteModel = new VoteModel();
+  caseNumber: string = this.padZeroes(this.vote.caseId, 10);
+  evidenceNumber: string = this.padZeroes(this.vote.evidenceId, 10);
 
   showProcessModal: boolean = false;
   isProcessing: boolean = false;
@@ -155,6 +157,16 @@ export class VoteComponent {
   public viewVoteDetail(data: VoteModel): void {
     this.showNewVoteModal = true;
     this.vote = data;
+    this.caseNumber = this.padZeroes(this.vote.caseId, 10);
+    this.evidenceNumber = this.padZeroes(this.vote.evidenceId, 10);
+  }
+
+  public padZeroes(number: number, length: number): string {
+    let str = number.toString();
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
   }
 
   ngOnInit() {

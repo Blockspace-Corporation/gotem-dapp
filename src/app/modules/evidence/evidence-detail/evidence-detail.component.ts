@@ -34,6 +34,7 @@ export class EvidenceDetailComponent {
     'Close'
   ];
   evidenceDetail: EvidenceNftModel = new EvidenceNftModel();
+  caseNumber: string = this.padZeroes(this.evidenceDetail.caseId, 10);
   voters: VoterModel[] = [];
 
   showProcessModal: boolean = false;
@@ -56,6 +57,7 @@ export class EvidenceDetailComponent {
             caseTitle: data.caseTitle,
             status: data.status
           };
+          this.caseNumber = this.padZeroes(this.evidenceDetail.caseId, 10);
         }
 
         // this is supposedly votes
@@ -86,6 +88,14 @@ export class EvidenceDetailComponent {
       },
       error => { }
     )
+  }
+
+  public padZeroes(number: number, length: number): string {
+    let str = number.toString();
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
   }
 
   ngOnInit() {

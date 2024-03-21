@@ -30,7 +30,7 @@
     <div class="grid" *ngIf="!isLoading">
         <div class="col-12 md:col-6 lg:col-6">
             <div class="w-full">
-                <p-panel header="Case Number:&nbsp;&nbsp;{{caseDetail.caseId}}">
+                <p-panel header="Case Number:&nbsp;&nbsp;{{padZeroes(caseDetail.caseId, 10)}}">
                     <div class="grid">
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
@@ -91,8 +91,10 @@
 <div class="w-full mb-3" *ngIf="!isLoading">
     <p-panel header="Evidences">
         <div class="card">
-            <p-table styleClass="p-datatable-striped" [value]="evidences" [responsive]="true"
-                [tableStyle]="{ 'min-width': '10rem' }">
+            <p-table [paginator]="true" [rows]="10"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]" styleClass="p-datatable-striped"
+                [value]="evidences" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th>View</th>
@@ -109,7 +111,7 @@
                                 <i class="pi pi-fw pi-eye"></i> View
                             </button>
                         </td>
-                        <td><span class="p-column-title">Evidence No.</span>{{evidence.evidenceId}}</td>
+                        <td><span class="p-column-title">Evidence No.</span>{{padZeroes(evidence.evidenceId, 10)}}</td>
                         <td><span class="p-column-title">Description</span>{{evidence.description}}</td>
                         <td><span class="p-column-title">Owner</span>{{evidence.owner}}</td>
                     </tr>

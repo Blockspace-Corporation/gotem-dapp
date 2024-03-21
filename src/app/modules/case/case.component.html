@@ -48,8 +48,10 @@
             <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
         </div>
         <div class="card" *ngIf="!isLoading">
-            <p-table styleClass="p-datatable-striped" [value]="cases" [responsive]="true"
-                [tableStyle]="{ 'min-width': '10rem' }">
+            <p-table [paginator]="true" [rows]="10"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]" styleClass=" p-datatable-striped"
+                [value]="cases" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th>View</th>
@@ -70,7 +72,7 @@
                                 <i class="pi pi-fw pi-eye"></i> View
                             </button>
                         </td>
-                        <td><span class="p-column-title">Name</span>{{case.caseId}}</td>
+                        <td><span class="p-column-title">Name</span>{{padZeroes(case.caseId, 10)}}</td>
                         <td><span class="p-column-title">Case Title</span>{{case.title}}</td>
                         <td><span class="p-column-title">Description</span>{{case.description}}</td>
                         <td><span class="p-column-title">Category</span>{{case.category}}</td>

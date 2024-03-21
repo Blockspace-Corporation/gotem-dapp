@@ -42,7 +42,10 @@
                     <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
                 </div>
                 <div class="card" *ngIf="!isLoading">
-                    <p-table styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
+                    <p-table [paginator]="true" [rows]="10"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]"
+                        styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
@@ -98,7 +101,10 @@
                     <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
                 </div>
                 <div class="card" *ngIf="!isLoading">
-                    <p-table styleClass="p-datatable-striped" [value]="votes" [responsive]="true"
+                    <p-table [paginator]="true" [rows]="10"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]"
+                        styleClass="p-datatable-striped" [value]="votes" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
@@ -124,7 +130,8 @@
                                     <span class="p-column-title">Votes</span>
                                     {{vote.yesCredit}} || {{vote.noCredit}}
                                 </td>
-                                <td><span class="p-column-title">Evidence No.</span>{{vote.evidenceId}}</td>
+                                <td><span class="p-column-title">Evidence No.</span>{{padZeroes(vote.evidenceId,10)}}
+                                </td>
                                 <td><span class="p-column-title">Evidence</span>-</td>
                             </tr>
                         </ng-template>
@@ -191,13 +198,13 @@
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
-                                <input pInputText id="" [(ngModel)]="vote.caseId" [readonly]="vote.voteId > 0" />
+                                <input pInputText id="" [(ngModel)]="caseNumber" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Evidence Number:</label>
-                                <input pInputText id="" [(ngModel)]="vote.evidenceId" [readonly]="vote.voteId > 0" />
+                                <input pInputText id="" [(ngModel)]="evidenceNumber" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">

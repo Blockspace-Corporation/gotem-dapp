@@ -2,17 +2,6 @@ import {
   Keyring
 } from "./chunk-ZF6Y3YKS.js";
 import {
-  blake2AsHex,
-  blake2AsU8a,
-  cryptoWaitReady,
-  decodeAddress,
-  encodeAddress,
-  ethereumEncode,
-  isEthereumAddress,
-  selectableNetworks,
-  xxhashAsU8a
-} from "./chunk-2MRYR5WN.js";
-import {
   BehaviorSubject,
   EMPTY,
   Observable,
@@ -34,6 +23,17 @@ import {
   tap,
   toArray
 } from "./chunk-WSA2QMXP.js";
+import {
+  blake2AsHex,
+  blake2AsU8a,
+  cryptoWaitReady,
+  decodeAddress,
+  encodeAddress,
+  ethereumEncode,
+  isEthereumAddress,
+  selectableNetworks,
+  xxhashAsU8a
+} from "./chunk-2MRYR5WN.js";
 import {
   BN_BILLION,
   BN_HUNDRED,

@@ -25,6 +25,7 @@ export class VoteComponent {
     private extrinsicService: ExtrinsicService
   ) { }
 
+  isLoading: boolean = true;
   voters: VoterModel[] = [];
   showNewVoterModal: boolean = false;
   voter: VoterModel = new VoterModel();
@@ -79,6 +80,8 @@ export class VoteComponent {
             });
           }
         }
+
+        this.isLoading = false;
       },
       error => { }
     )

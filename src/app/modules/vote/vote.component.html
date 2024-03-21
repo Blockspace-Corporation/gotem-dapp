@@ -38,7 +38,10 @@
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Voters">
-                <div class="card">
+                <div *ngIf="isLoading">
+                    <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+                </div>
+                <div class="card" *ngIf="!isLoading">
                     <p-table styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
@@ -72,7 +75,6 @@
     </div>
 </div>
 <br />
-<br />
 <div class="w-full mb-3">
     <p-toolbar>
         <div class="p-toolbar-group-start"></div>
@@ -92,7 +94,10 @@
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Votes">
-                <div class="card">
+                <div *ngIf="isLoading">
+                    <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+                </div>
+                <div class="card" *ngIf="!isLoading">
                     <p-table styleClass="p-datatable-striped" [value]="votes" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">

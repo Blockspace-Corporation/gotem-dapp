@@ -26,6 +26,7 @@ export class EvidenceComponent {
     private extrinsicService: ExtrinsicService
   ) { }
 
+  isLoading: boolean = true;
   statuses: string[] = [
     'New',
     'Voted',
@@ -59,6 +60,8 @@ export class EvidenceComponent {
             });
           }
         }
+        
+        this.isLoading = false;
       },
       error => { }
     )

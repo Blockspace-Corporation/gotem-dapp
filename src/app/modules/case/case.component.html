@@ -44,7 +44,10 @@
 </div>
 <div class="w-full mb-3">
     <p-panel header="Cases">
-        <div class="card">
+        <div *ngIf="isLoading">
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+        </div>
+        <div class="card" *ngIf="!isLoading">
             <p-table styleClass="p-datatable-striped" [value]="cases" [responsive]="true"
                 [tableStyle]="{ 'min-width': '10rem' }">
                 <ng-template pTemplate="header" let-columns>

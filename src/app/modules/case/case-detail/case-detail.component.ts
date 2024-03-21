@@ -27,6 +27,7 @@ export class CaseDetailComponent {
     private extrinsicService: ExtrinsicService
   ) { }
 
+  isLoading: boolean = true;
   categories: string[] = [
     'Scam',
     'Web',
@@ -89,6 +90,8 @@ export class CaseDetailComponent {
             });
           }
         }
+
+        this.isLoading = false;
       },
       error => { }
     )

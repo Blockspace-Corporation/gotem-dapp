@@ -24,7 +24,10 @@
     </p-toolbar>
 </div> -->
 <div class="w-full mb-3">
-    <div class="grid">
+    <div *ngIf="isLoading">
+        <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+    </div>
+    <div class="grid" *ngIf="!isLoading">
         <div class="col-12 md:col-6 lg:col-6">
             <div class="w-full">
                 <p-panel header="Evidence Number:&nbsp;&nbsp;{{evidenceDetail.evidenceId}}">
@@ -101,7 +104,7 @@
         </div>
     </div>
 </div>
-<div class="w-full mb-3">
+<div class="w-full mb-3" *ngIf="!isLoading">
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Voters">

@@ -11,8 +11,8 @@
                 <div class="col-12 md:col-6 lg:col-6">
                     <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
-                        <p-dropdown [options]="statuses" [(ngModel)]="selectedStatus" [showClear]="true"
-                            placeholder="Select Status" [styleClass]="'w-full'"></p-dropdown>
+                        <p-dropdown [options]="statuses" [(ngModel)]="selectedStatus" placeholder="Select Status"
+                            [styleClass]="'w-full'"></p-dropdown>
                     </span>
                 </div>
                 <div class="col-12 md:col-6 lg:col-6">
@@ -37,9 +37,14 @@
 </div>
 <div class="w-full mb-3">
     <p-panel header="Evidences">
-        <div class="card">
-            <p-table styleClass="p-datatable-striped" [value]="evidences" [responsive]="true"
-                [tableStyle]="{ 'min-width': '10rem' }">
+        <div *ngIf="isLoading">
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+        </div>
+        <div class="card" *ngIf="!isLoading">
+            <p-table [paginator]="true" [rows]="10"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]" styleClass="p-datatable-striped"
+                [value]="evidences" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th>View</th>
@@ -47,8 +52,8 @@
                         <th>Description</th>
                         <th>Owner</th>
                         <th>Votes</th>
-                        <th>Evidence No.</th>
-                        <th>Evidence Title</th>
+                        <th>Case No.</th>
+                        <th>Case Title</th>
                         <th>Status</th>
                     </tr>
                 </ng-template>
@@ -60,13 +65,16 @@
                                 <i class="pi pi-fw pi-eye"></i> View
                             </button>
                         </td>
-                        <td><span class="p-column-title">Evidence No.</span>{{evidence.evidenceId}}</td>
+                        <td><span class="p-column-title">Evidence No.</span>{{padZeroes(evidence.evidenceId, 10)}}</td>
                         <td><span class="p-column-title">Description</span>{{evidence.description}}</td>
                         <td><span class="p-column-title">Owner</span>{{evidence.owner}}</td>
                         <td><span class="p-column-title">Votes</span>-</td>
-                        <td><span class="p-column-title">Evidence No.</span>-</td>
-                        <td><span class="p-column-title">Evidence Title</span>-</td>
-                        <td><span class="p-column-title">Status</span>{{evidence.status}}</td>
+                        <td><span class="p-column-title">Case No.</span>{{evidence.caseId}}</td>
+                        <td><span class="p-column-title">Case Title</span>{{evidence.caseTitle}}</td>
+                        <td>
+                            <span class="p-column-title">Status</span>
+                            <p-chip label="{{evidence.status}}" icon="pi pi-info-circle"></p-chip>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -93,13 +101,7 @@
                                 <input pInputText id="" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Evidence Number</label>
-                                <input pInputText id="" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-6">
+                        <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner:</label>
                                 <input pInputText id="" [(ngModel)]="newEvidence.owner" />
@@ -145,7 +147,8 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false">
+<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false"
+    [draggable]="false">
     <div class="w-full text-center">
         <div class="w-full" *ngIf="executionExtrinsicsStatus == undefined">
             <p-progressSpinner></p-progressSpinner>
@@ -168,3 +171,5 @@
         </div>
     </div>
 </p-dialog>
+
+<p-toast position="top-center"></p-toast>

@@ -1,8 +1,4 @@
 import {
-  blake2AsU8a,
-  decodeAddress
-} from "./chunk-2MRYR5WN.js";
-import {
   BrowserModule,
   DomSanitizer
 } from "./chunk-2JYBFHPR.js";
@@ -25,6 +21,10 @@ import {
   ɵɵsanitizeHtml
 } from "./chunk-2G7AIO2N.js";
 import "./chunk-WSA2QMXP.js";
+import {
+  blake2AsU8a,
+  decodeAddress
+} from "./chunk-2MRYR5WN.js";
 import {
   isU8a,
   stringToU8a

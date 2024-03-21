@@ -12,9 +12,11 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { TagModule } from 'primeng/tag';
 import { ChipModule } from 'primeng/chip';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 import { VoteRoutingModule } from './vote-routing.module';
 import { VoteComponent } from './vote.component';
@@ -38,9 +40,11 @@ import { VoteComponent } from './vote.component';
     TableModule,
     DialogModule,
     ProgressSpinnerModule,
+    ProgressBarModule,
     TagModule,
     ChipModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [
     DecimalPipe

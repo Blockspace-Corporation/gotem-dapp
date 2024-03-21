@@ -1,11 +1,11 @@
 import {
+  TimesIcon
+} from "./chunk-ARIZ4KA7.js";
+import {
   ButtonDirective,
   ButtonModule
 } from "./chunk-H3DT6EUO.js";
 import "./chunk-7AVJX33F.js";
-import {
-  TimesIcon
-} from "./chunk-ARIZ4KA7.js";
 import {
   Ripple,
   RippleModule

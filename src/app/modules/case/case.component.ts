@@ -26,6 +26,7 @@ export class CaseComponent {
     private extrinsicService: ExtrinsicService,
   ) { }
 
+  isLoading: boolean = true;
   categories: string[] = [
     'Scam',
     'Web',
@@ -68,6 +69,8 @@ export class CaseComponent {
             });
           }
         }
+
+        this.isLoading = false;
       },
       error => { }
     )
@@ -117,6 +120,14 @@ export class CaseComponent {
     this.router.navigate(['/app/case/detail/' + 1]);
   }
 
+  public padZeroes(number: number, length: number): string {
+    let str = number.toString();
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
+  }
+  
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [

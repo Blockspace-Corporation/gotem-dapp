@@ -27,12 +27,14 @@ export class EvidenceDetailComponent {
     private extrinsicService: ExtrinsicService
   ) { }
 
+  isLoading: boolean = true;
   statuses: string[] = [
     'New',
     'Voted',
     'Close'
   ];
   evidenceDetail: EvidenceNftModel = new EvidenceNftModel();
+  caseNumber: string = this.padZeroes(this.evidenceDetail.caseId, 10);
   voters: VoterModel[] = [];
 
   showProcessModal: boolean = false;
@@ -51,9 +53,11 @@ export class EvidenceDetailComponent {
             description: data.description,
             owner: data.owner,
             file: data.file,
-            caseId: data.case_id,
+            caseId: data.caseId,
+            caseTitle: data.caseTitle,
             status: data.status
           };
+          this.caseNumber = this.padZeroes(this.evidenceDetail.caseId, 10);
         }
 
         // this is supposedly votes
@@ -79,9 +83,19 @@ export class EvidenceDetailComponent {
             });
           }
         }
+
+        this.isLoading = false;
       },
       error => { }
     )
+  }
+
+  public padZeroes(number: number, length: number): string {
+    let str = number.toString();
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
   }
 
   ngOnInit() {

@@ -25,6 +25,7 @@ export class VoteComponent {
     private extrinsicService: ExtrinsicService
   ) { }
 
+  isLoading: boolean = true;
   voters: VoterModel[] = [];
   showNewVoterModal: boolean = false;
   voter: VoterModel = new VoterModel();
@@ -32,6 +33,8 @@ export class VoteComponent {
   votes: VoteModel[] = [];
   showNewVoteModal: boolean = false;
   vote: VoteModel = new VoteModel();
+  caseNumber: string = this.padZeroes(this.vote.caseId, 10);
+  evidenceNumber: string = this.padZeroes(this.vote.evidenceId, 10);
 
   showProcessModal: boolean = false;
   isProcessing: boolean = false;
@@ -79,6 +82,8 @@ export class VoteComponent {
             });
           }
         }
+
+        this.isLoading = false;
       },
       error => { }
     )
@@ -86,10 +91,12 @@ export class VoteComponent {
 
   public openNewVoterModal(): void {
     this.showNewVoterModal = true;
+    this.voter = new VoterModel();
   }
 
   public openNewVoteModal(): void {
     this.showNewVoteModal = true;
+    this.vote = new VoteModel();
   }
 
   public setVoterExtrinsic(): void {
@@ -150,6 +157,16 @@ export class VoteComponent {
   public viewVoteDetail(data: VoteModel): void {
     this.showNewVoteModal = true;
     this.vote = data;
+    this.caseNumber = this.padZeroes(this.vote.caseId, 10);
+    this.evidenceNumber = this.padZeroes(this.vote.evidenceId, 10);
+  }
+
+  public padZeroes(number: number, length: number): string {
+    let str = number.toString();
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
   }
 
   ngOnInit() {

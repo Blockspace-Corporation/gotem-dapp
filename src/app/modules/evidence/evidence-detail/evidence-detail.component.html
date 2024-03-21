@@ -4,7 +4,7 @@
     </div>
     <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
 </div>
-<div class="w-full mb-3">
+<!-- <div class="w-full mb-3">
     <p-toolbar>
         <div class="p-toolbar-group-start">
             <div class="text-lg">
@@ -22,36 +22,39 @@
             </div>
         </div>
     </p-toolbar>
-</div>
+</div> -->
 <div class="w-full mb-3">
-    <div class="grid">
+    <div *ngIf="isLoading">
+        <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+    </div>
+    <div class="grid" *ngIf="!isLoading">
         <div class="col-12 md:col-6 lg:col-6">
             <div class="w-full">
-                <p-panel header="Details">
+                <p-panel header="Evidence Number:&nbsp;&nbsp;{{padZeroes(evidenceDetail.evidenceId, 10)}}">
                     <div class="grid">
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
-                                <input pInputText id="" [(ngModel)]="evidenceDetail.caseId" />
+                                <input pInputText id="" [(ngModel)]="caseNumber" [readonly]="true" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Title</label>
-                                <input pInputText id="" />
+                                <input pInputText id="" [(ngModel)]="evidenceDetail.caseTitle" [readonly]="true" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner:</label>
-                                <input pInputText id="" [(ngModel)]="evidenceDetail.owner" />
+                                <input pInputText id="" [(ngModel)]="evidenceDetail.owner" [readonly]="true" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Description:</label>
                                 <textarea rows="5" cols="30" pInputTextarea class="w-full"
-                                    [(ngModel)]="evidenceDetail.description"></textarea>
+                                    [(ngModel)]="evidenceDetail.description" [readonly]="true"></textarea>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6 mt-2">
@@ -68,8 +71,9 @@
                     <div class="grid">
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
-                                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                                    [multiple]="true" accept="image/*">
+                                <p-fileUpload [showUploadButton]="false" [showCancelButton]="false" [disabled]="true"
+                                    name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" [multiple]="true"
+                                    accept="image/*">
                                     <ng-template pTemplate="content">
 
                                     </ng-template>
@@ -85,13 +89,13 @@
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Total Vote Result:</label>
-                                <input pInputText id="" />
+                                <input pInputText id="" [readonly]="true" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Total Distribution Result:</label>
-                                <input pInputText id="" />
+                                <input pInputText id="" [readonly]="true" />
                             </div>
                         </div>
                     </div>
@@ -100,12 +104,15 @@
         </div>
     </div>
 </div>
-<div class="w-full mb-3">
+<div class="w-full mb-3" *ngIf="!isLoading">
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Voters">
                 <div class="card">
-                    <p-table styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
+                    <p-table [paginator]="true" [rows]="10"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]"
+                        styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>

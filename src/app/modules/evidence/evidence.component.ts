@@ -26,6 +26,7 @@ export class EvidenceComponent {
     private extrinsicService: ExtrinsicService
   ) { }
 
+  isLoading: boolean = true;
   statuses: string[] = [
     'New',
     'Voted',
@@ -53,11 +54,14 @@ export class EvidenceComponent {
               description: data[i].description,
               owner: data[i].owner,
               file: data[i].file,
-              caseId: data[i].case_id,
+              caseId: data[i].caseId,
+              caseTitle: data[i].caseTitle,
               status: data[i].status
             });
           }
         }
+        
+        this.isLoading = false;
       },
       error => { }
     )
@@ -105,6 +109,14 @@ export class EvidenceComponent {
 
   public viewEvidenceDetail(data: EvidenceNftModel): void {
     this.router.navigate(['/app/evidence/detail/' + 1]);
+  }
+  
+  public padZeroes(number: number, length: number): string {
+    let str = number.toString();
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
   }
   
   ngOnInit() {

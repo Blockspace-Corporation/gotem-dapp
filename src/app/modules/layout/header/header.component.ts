@@ -41,10 +41,10 @@ export class HeaderComponent {
         label: 'Development'
       },
       {
-        label: 'Test Net'
+        label: 'Rococo Testnet'
       },
       {
-        label: 'Main Net'
+        label: 'Xode Network'
       }
     ];
   }

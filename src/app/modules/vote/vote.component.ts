@@ -172,7 +172,7 @@ export class VoteComponent {
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
-      { label: 'Dashboard' },
+      { label: 'Dashboard', routerLink: '/app/dashboard' },
       { label: 'Vote' }
     ];
 

@@ -3,17 +3,21 @@ import {
   InfoCircleIcon
 } from "./chunk-UZTO24EC.js";
 import {
-  CheckIcon
-} from "./chunk-A7K3MTCD.js";
+  ProgressBar,
+  ProgressBarModule
+} from "./chunk-APBSJ5KF.js";
 import {
   PlusIcon
 } from "./chunk-G5GLPHMU.js";
 import {
-  TimesIcon
-} from "./chunk-ARIZ4KA7.js";
-import {
   TimesCircleIcon
 } from "./chunk-TMBJXY6J.js";
+import {
+  CheckIcon
+} from "./chunk-A7K3MTCD.js";
+import {
+  TimesIcon
+} from "./chunk-ARIZ4KA7.js";
 import {
   Button,
   ButtonDirective,
@@ -30,10 +34,6 @@ import {
 import {
   BaseIcon
 } from "./chunk-YCE7AVZB.js";
-import {
-  ProgressBar,
-  ProgressBarModule
-} from "./chunk-APBSJ5KF.js";
 import {
   MessageService,
   PrimeNGConfig,

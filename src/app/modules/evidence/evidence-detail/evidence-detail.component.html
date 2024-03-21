@@ -4,25 +4,21 @@
     </div>
     <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
 </div>
-<!-- <div class="w-full mb-3">
+<div class="w-full mb-3">
     <p-toolbar>
-        <div class="p-toolbar-group-start">
-            <div class="text-lg">
-                <b>Evidence Number:</b>&nbsp;{{evidenceDetail.evidenceId}}
-            </div>
-        </div>
+        <div class="p-toolbar-group-start"></div>
         <div class="p-toolbar-group-center"></div>
         <div class="p-toolbar-group-end">
-            <div class="grid">
+            <div class="grid" style="margin: -5px;">
                 <div class="col-12 md:col-12 lg:col-12">
-                    <button type="button" pButton class="p-button p-button-rounded">
-                        Save
+                    <button type="button" pButton class="p-button p-button-rounded" (click)="updateEvidenceExtrinsic()">
+                        Update
                     </button>
                 </div>
             </div>
         </div>
     </p-toolbar>
-</div> -->
+</div>
 <div class="w-full mb-3">
     <div *ngIf="isLoading">
         <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
@@ -47,14 +43,14 @@
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner:</label>
-                                <input pInputText id="" [(ngModel)]="evidenceDetail.owner" [readonly]="true" />
+                                <input pInputText id="" [(ngModel)]="evidenceDetail.owner" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Description:</label>
                                 <textarea rows="5" cols="30" pInputTextarea class="w-full"
-                                    [(ngModel)]="evidenceDetail.description" [readonly]="true"></textarea>
+                                    [(ngModel)]="evidenceDetail.description"></textarea>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6 mt-2">
@@ -112,7 +108,7 @@
                     <p-table [paginator]="true" [rows]="10"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                         [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]"
-                        styleClass="p-datatable-striped" [value]="voters" [responsive]="true"
+                        styleClass="p-datatable-striped" [value]="votes" [responsive]="true"
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
@@ -121,14 +117,15 @@
                                 <th>Distribution Result</th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" let-voter>
+                        <ng-template pTemplate="body" let-vote>
                             <tr>
                                 <td>
                                     <span class="p-column-title">Vote Credit</span>
-                                    {{decimalPipe.transform(voter.voteCredit) || "0"}}
+                                    {{decimalPipe.transform(vote.yesCredit) || "0"}}
                                 </td>
                                 <td><span class="p-column-title">Vote Result</span>-</td>
-                                <td><span class="p-column-title">Distribution Result</span>-</td>
+                                <td><span class="p-column-title">Distribution Result</span>{{vote.destributionReward}}
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -137,3 +134,39 @@
         </div>
     </div>
 </div>
+<div class="w-full" *ngIf="!isLoading">
+    <p-panel header="Danger Zone">
+        <button type="button" pButton class="p-button p-button-danger p-button-rounded"
+            (click)="burnEvidenceExtrinsic()">
+            Burn this Evidence
+        </button>
+    </p-panel>
+</div>
+
+<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false"
+    [draggable]="false">
+    <div class="w-full text-center">
+        <div class="w-full" *ngIf="executionExtrinsicsStatus == undefined">
+            <p-progressSpinner></p-progressSpinner>
+            <div class="w-full mt-3" style="white-space: pre-wrap;">
+                Processing
+            </div>
+        </div>
+        <div *ngIf="executionExtrinsicsStatus != undefined">
+            <div class="w-full mb-2" *ngIf="executionExtrinsicsStatus.isError == false">
+                <i class="pi pi-check" style="font-size: 5rem; font-weight: bold; color: rgb(119, 255, 119);"></i>
+            </div>
+            <div class="w-full mb-2" *ngIf="executionExtrinsicsStatus.isError == true">
+                <i class="pi pi-times" style="font-size: 5rem; font-weight: bold; color: rgb(202, 74, 74);"></i>
+            </div>
+            <div class="w-full mb-3" style="white-space: pre-wrap;">
+                {{executionExtrinsicsStatus.message}}
+            </div>
+            <button pButton type="button" label="Okay" class="p-button"
+                (click)="showProcessModal = false; executionExtrinsicsStatus = undefined;"></button>
+        </div>
+    </div>
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

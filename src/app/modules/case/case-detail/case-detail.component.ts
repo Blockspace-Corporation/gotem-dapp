@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CaseNftModel } from '../../../models/case-nft.model';
 import { SmartContractCaseService } from '../../../services/smart-contract-case/smart-contract-case.service';
 import { EvidenceNftModel } from '../../../models/evidence-nft.model';
@@ -12,7 +13,8 @@ import { ExecuteExtrinsicsStatusModel } from '../../../models/execution-extrinsi
 @Component({
   selector: 'app-case-detail',
   templateUrl: './case-detail.component.html',
-  styleUrl: './case-detail.component.scss'
+  styleUrl: './case-detail.component.scss',
+  providers: [ConfirmationService, MessageService]
 })
 export class CaseDetailComponent {
   breadcrumbHome: MenuItem | undefined;
@@ -22,6 +24,8 @@ export class CaseDetailComponent {
     private router: Router,
     private route: ActivatedRoute,
     public decimalPipe: DecimalPipe,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
     private smartContractCaseService: SmartContractCaseService,
     private smartContractEvidenceService: SmartContractEvidenceService,
     private extrinsicService: ExtrinsicService
@@ -42,6 +46,8 @@ export class CaseDetailComponent {
   ];
   caseDetail: CaseNftModel = new CaseNftModel();
   evidences: EvidenceNftModel[] = [];
+
+  confirmedBurn: boolean = false;
 
   showProcessModal: boolean = false;
   isProcessing: boolean = false;
@@ -101,6 +107,70 @@ export class CaseDetailComponent {
     this.router.navigate(['/app/evidence/detail/' + 1]);
   }
 
+  public updateCaseExtrinsic(): void {
+    this.confirmedBurn = false;
+    this.smartContractCaseService.updateCaseExtrinsic(this.caseDetail.caseId, this.caseDetail).subscribe(
+      result => {
+        let data: any = result;
+        this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+      }
+    );
+  }
+
+  public burnCaseExtrinsic(): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to burn this case?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptButtonStyleClass: "p-button-danger",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        this.confirmedBurn = true;
+        this.smartContractCaseService.burnCaseExtrinsic(this.caseDetail.caseId).subscribe(
+          result => {
+            let data: any = result;
+            this.signAndSendExtrinsics(data);
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+          }
+        );
+      }
+    });
+  }
+
+  public signAndSendExtrinsics(data: any): void {
+    this.extrinsicService.signExtrinsics(data).then(
+      (signedExtrinsics: any) => {
+        this.showProcessModal = true;
+
+        this.extrinsicService.executeExtrinsics(signedExtrinsics).subscribe(
+          results => {
+            this.executionExtrinsicsStatus = {
+              message: results.message,
+              isError: results.isError
+            }
+
+            if (this.confirmedBurn == true) {
+              setTimeout(() => {
+                this.router.navigate(['/app/case']);
+              }, 1000);
+            }
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+            this.showProcessModal = false;
+          }
+        );
+      }
+    );
+  }
+
   public padZeroes(number: number, length: number): string {
     let str = number.toString();
     while (str.length < length) {
@@ -108,12 +178,12 @@ export class CaseDetailComponent {
     }
     return str;
   }
-  
+
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
-      { label: 'Dashboard' },
-      { label: 'Case' },
+      { label: 'Dashboard', routerLink: '/app/dashboard' },
+      { label: 'Case', routerLink: '/app/case' },
       { label: 'Case Detail' },
     ];
 

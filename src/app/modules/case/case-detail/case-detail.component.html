@@ -4,25 +4,21 @@
     </div>
     <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
 </div>
-<!-- <div class="w-full mb-3">
+<div class="w-full mb-3">
     <p-toolbar>
-        <div class="p-toolbar-group-start">
-            <div class="text-lg">
-                <b>Case Number:</b>&nbsp;{{caseDetail.caseId}}
-            </div>
-        </div>
+        <div class="p-toolbar-group-start"></div>
         <div class="p-toolbar-group-center"></div>
         <div class="p-toolbar-group-end">
-            <div class="grid">
+            <div class="grid" style="margin: -5px;">
                 <div class="col-12 md:col-12 lg:col-12">
-                    <button type="button" pButton class="p-button p-button-rounded">
-                        Save
+                    <button type="button" pButton class="p-button p-button-rounded" (click)="updateCaseExtrinsic()">
+                        Update
                     </button>
                 </div>
             </div>
         </div>
     </p-toolbar>
-</div> -->
+</div>
 <div class="w-full mb-3">
     <div *ngIf="isLoading">
         <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
@@ -35,28 +31,27 @@
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Title</label>
-                                <input pInputText id="" [(ngModel)]="caseDetail.title" [readonly]="true" />
+                                <input pInputText id="" [(ngModel)]="caseDetail.title" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Category:</label>
                                 <p-dropdown [options]="categories" [(ngModel)]="caseDetail.category"
-                                    placeholder="Select Category" [styleClass]="'w-full'"
-                                    [readonly]="true"></p-dropdown>
+                                    placeholder="Select Category" [styleClass]="'w-full'"></p-dropdown>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner</label>
-                                <input pInputText id="" [(ngModel)]="caseDetail.owner" [readonly]="true" />
+                                <input pInputText id="" [(ngModel)]="caseDetail.owner" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Description:</label>
                                 <textarea rows="5" cols="30" pInputTextarea class="w-full"
-                                    [(ngModel)]="caseDetail.description" [readonly]="true"></textarea>
+                                    [(ngModel)]="caseDetail.description"></textarea>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6 mt-2">
@@ -120,3 +115,38 @@
         </div>
     </p-panel>
 </div>
+<div class="w-full" *ngIf="!isLoading">
+    <p-panel header="Danger Zone">
+        <button type="button" pButton class="p-button p-button-danger p-button-rounded" (click)="burnCaseExtrinsic()">
+            Burn this Case
+        </button>
+    </p-panel>
+</div>
+
+<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false"
+    [draggable]="false">
+    <div class="w-full text-center">
+        <div class="w-full" *ngIf="executionExtrinsicsStatus == undefined">
+            <p-progressSpinner></p-progressSpinner>
+            <div class="w-full mt-3" style="white-space: pre-wrap;">
+                Processing
+            </div>
+        </div>
+        <div *ngIf="executionExtrinsicsStatus != undefined">
+            <div class="w-full mb-2" *ngIf="executionExtrinsicsStatus.isError == false">
+                <i class="pi pi-check" style="font-size: 5rem; font-weight: bold; color: rgb(119, 255, 119);"></i>
+            </div>
+            <div class="w-full mb-2" *ngIf="executionExtrinsicsStatus.isError == true">
+                <i class="pi pi-times" style="font-size: 5rem; font-weight: bold; color: rgb(202, 74, 74);"></i>
+            </div>
+            <div class="w-full mb-3" style="white-space: pre-wrap;">
+                {{executionExtrinsicsStatus.message}}
+            </div>
+            <button pButton type="button" label="Okay" class="p-button"
+                (click)="showProcessModal = false; executionExtrinsicsStatus = undefined;"></button>
+        </div>
+    </div>
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

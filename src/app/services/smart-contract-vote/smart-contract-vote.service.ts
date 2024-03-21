@@ -104,6 +104,40 @@ export class SmartContractVoteService {
     });
   }
 
+  public updateVoterExtrinsic(id: number, data: VoterModel): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.put(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/update-voter/" + id, JSON.stringify(data), this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
+  }
+
+  public burnVoterExtrinsic(id: number): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.delete(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/burn-voter/" + id, this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
+  }
+
   public getAllVote(): Observable<VoteModel[] | []> {
     return new Observable<VoteModel[]>((observer) => {
       let votes: VoteModel[] = [];
@@ -168,9 +202,76 @@ export class SmartContractVoteService {
     });
   }
 
+  public getAllVoteByEvidenceId(evidenceId: number): Observable<VoteModel[] | []> {
+    return new Observable<VoteModel[]>((observer) => {
+      let votes: VoteModel[] = [];
+
+      this.httpClient.get(this.defaultApiEndpoint + '/api/smart-contract/vote/get/all-vote/by-evidence-id/' + evidenceId, this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          if (results.length > 0) {
+            for (let i = 0; i < results.length; i++) {
+              votes.push({
+                voteId: results[i].voteId,
+                caseId: results[i].caseId,
+                evidenceId: results[i].evidenceId,
+                voter: results[i].voter,
+                yesCredit: results[i].yesCredit,
+                noCredit: results[i].noCredit,
+                destributionReward: results[i].destributionReward
+              });
+            }
+          }
+
+          observer.next(votes);
+          observer.complete();
+        },
+        error => {
+          observer.error([]);
+          observer.complete();
+        }
+      )
+    });
+  }
+
   public setVoteExtrinsic(data: VoteModel): Observable<any> {
     return new Observable<any>((observer) => {
       this.httpClient.post(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/set-vote", JSON.stringify(data), this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
+  }
+
+  public updateVoteExtrinsic(id: number, data: VoterModel): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.put(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/update-vote/" + id, JSON.stringify(data), this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
+  }
+
+  public burnVoteExtrinsic(id: number): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.delete(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/burn-vote/" + id, this.options).subscribe(
         response => {
           let results: any = response;
 

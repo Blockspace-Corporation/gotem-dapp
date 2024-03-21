@@ -6,7 +6,11 @@
 </div>
 <div class="w-full mb-3">
     <p-toolbar>
-        <div class="p-toolbar-group-start"></div>
+        <div class="p-toolbar-group-start">
+            <div class="text-lg">
+                <b>Evidence Number:</b>&nbsp;{{evidenceDetail.evidenceId}}
+            </div>
+        </div>
         <div class="p-toolbar-group-center"></div>
         <div class="p-toolbar-group-end">
             <div class="grid">
@@ -37,13 +41,7 @@
                                 <input pInputText id="" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Evidence Number</label>
-                                <input pInputText id="" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-6">
+                        <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner:</label>
                                 <input pInputText id="" [(ngModel)]="evidenceDetail.owner" />

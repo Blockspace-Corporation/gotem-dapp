@@ -6,7 +6,11 @@
 </div>
 <div class="w-full mb-3">
     <p-toolbar>
-        <div class="p-toolbar-group-start"></div>
+        <div class="p-toolbar-group-start">
+            <div class="text-lg">
+                <b>Case Number:</b>&nbsp;{{caseDetail.caseId}}
+            </div>
+        </div>
         <div class="p-toolbar-group-center"></div>
         <div class="p-toolbar-group-end">
             <div class="grid">
@@ -25,13 +29,7 @@
             <div class="w-full">
                 <p-panel header="Details">
                     <div class="grid">
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Case Number:</label>
-                                <input pInputText id="" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-6">
+                        <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Title</label>
                                 <input pInputText id="" [(ngModel)]="caseDetail.title" />

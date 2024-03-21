@@ -51,7 +51,7 @@ export class SmartContractVoteService {
           observer.complete();
         },
         error => {
-          observer.next([]);
+          observer.error([]);
           observer.complete();
         }
       )
@@ -80,7 +80,7 @@ export class SmartContractVoteService {
           observer.complete();
         },
         error => {
-          observer.next(undefined);
+          observer.error(undefined);
           observer.complete();
         }
       )
@@ -97,7 +97,7 @@ export class SmartContractVoteService {
           observer.complete();
         },
         error => {
-          observer.next("");
+          observer.error(error);
           observer.complete();
         }
       );
@@ -130,7 +130,7 @@ export class SmartContractVoteService {
           observer.complete();
         },
         error => {
-          observer.next([]);
+          observer.error([]);
           observer.complete();
         }
       )
@@ -161,7 +161,7 @@ export class SmartContractVoteService {
           observer.complete();
         },
         error => {
-          observer.next(undefined);
+          observer.error(undefined);
           observer.complete();
         }
       )
@@ -178,7 +178,7 @@ export class SmartContractVoteService {
           observer.complete();
         },
         error => {
-          observer.next("");
+          observer.error(error);
           observer.complete();
         }
       );

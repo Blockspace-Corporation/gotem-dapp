@@ -66,7 +66,8 @@ export class CaseDetailComponent {
         }
 
         this.getAllEvidenceByCaseId();
-      }
+      },
+      error => { }
     )
   }
 
@@ -87,7 +88,8 @@ export class CaseDetailComponent {
             });
           }
         }
-      }
+      },
+      error => { }
     )
   }
 

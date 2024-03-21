@@ -54,7 +54,7 @@ export class ExtrinsicService {
           observer.complete();
         },
         error => {
-          observer.next("");
+          observer.error(error);
           observer.complete();
         }
       );

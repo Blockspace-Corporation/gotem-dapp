@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { CaseNftModel } from '../../models/case-nft.model';
 import { SmartContractCaseService } from '../../services/smart-contract-case/smart-contract-case.service';
 import { ExtrinsicService } from '../../services/extrinsic/extrinsic.service';
@@ -10,7 +11,8 @@ import { ExecuteExtrinsicsStatusModel } from '../../models/execution-extrinsics-
 @Component({
   selector: 'app-case',
   templateUrl: './case.component.html',
-  styleUrl: './case.component.scss'
+  styleUrl: './case.component.scss',
+  providers: [MessageService]
 })
 export class CaseComponent {
   breadcrumbHome: MenuItem | undefined;
@@ -19,8 +21,9 @@ export class CaseComponent {
   constructor(
     private router: Router,
     public decimalPipe: DecimalPipe,
+    private messageService: MessageService,
     private smartContractCaseService: SmartContractCaseService,
-    private extrinsicService: ExtrinsicService
+    private extrinsicService: ExtrinsicService,
   ) { }
 
   categories: string[] = [
@@ -65,7 +68,8 @@ export class CaseComponent {
             });
           }
         }
-      }
+      },
+      error => { }
     )
   }
 
@@ -78,6 +82,9 @@ export class CaseComponent {
       result => {
         let data: any = result;
         this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
       }
     );
   }
@@ -96,6 +103,10 @@ export class CaseComponent {
 
             this.showNewCaseModal = false;
             this.getAllCase();
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+            this.showProcessModal = false;
           }
         );
       }

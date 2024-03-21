@@ -97,6 +97,7 @@
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
+                                <th>View</th>
                                 <th>Vote No.</th>
                                 <th>Voter</th>
                                 <th>Votes</th>
@@ -112,14 +113,14 @@
                                         <i class="pi pi-fw pi-eye"></i> View
                                     </button>
                                 </td>
-                                <td><span class="p-column-title">Vote No.</span>{{vote.voter}}</td>
+                                <td><span class="p-column-title">Vote No.</span>{{vote.voteId}}</td>
                                 <td><span class="p-column-title">Voter</span>{{vote.voter}}</td>
                                 <td>
                                     <span class="p-column-title">Votes</span>
                                     {{vote.yesCredit}} || {{vote.noCredit}}
                                 </td>
                                 <td><span class="p-column-title">Evidence No.</span>{{vote.evidenceId}}</td>
-                                <td><span class="p-column-title">Evidence</span>{{vote.voter}}</td>
+                                <td><span class="p-column-title">Evidence</span>-</td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -139,25 +140,25 @@
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
-                                <input pInputText id="" [(ngModel)]="voter.caseId" />
+                                <input pInputText id="" [(ngModel)]="voter.caseId" [readonly]="voter.voterId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Voter:</label>
-                                <input pInputText id="" [(ngModel)]="voter.voter" />
+                                <input pInputText id="" [(ngModel)]="voter.voter" [readonly]="voter.voterId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Amount Hold</label>
-                                <input pInputText id="" [(ngModel)]="voter.amountHold" />
+                                <input pInputText id="" [(ngModel)]="voter.amountHold" [readonly]="voter.voterId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Vote Credit</label>
-                                <input pInputText id="" [(ngModel)]="voter.voteCredit" />
+                                <input pInputText id="" [(ngModel)]="voter.voteCredit" [readonly]="voter.voterId > 0" />
                             </div>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <button pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing"
+        <button *ngIf="voter.voterId == 0" pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing"
             (click)="setVoterExtrinsic()">
             <div class="w-full text-center">
                 Create
@@ -185,37 +186,38 @@
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
-                                <input pInputText id="" [(ngModel)]="vote.caseId" />
+                                <input pInputText id="" [(ngModel)]="vote.caseId" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Evidence Number:</label>
-                                <input pInputText id="" [(ngModel)]="vote.evidenceId" />
+                                <input pInputText id="" [(ngModel)]="vote.evidenceId" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Voter:</label>
-                                <input pInputText id="" [(ngModel)]="vote.voter" />
+                                <input pInputText id="" [(ngModel)]="vote.voter" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Yes Credit</label>
-                                <input pInputText id="" [(ngModel)]="vote.yesCredit" />
+                                <input pInputText id="" [(ngModel)]="vote.yesCredit" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">No Credit</label>
-                                <input pInputText id="" [(ngModel)]="vote.noCredit" />
+                                <input pInputText id="" [(ngModel)]="vote.noCredit" [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Distributed Rewards</label>
-                                <input pInputText id="" [(ngModel)]="vote.destributionReward" />
+                                <input pInputText id="" [(ngModel)]="vote.destributionReward"
+                                    [readonly]="vote.voteId > 0" />
                             </div>
                         </div>
                     </div>
@@ -224,7 +226,8 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <button pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing" (click)="setVoteExtrinsic()">
+        <button *ngIf="vote.voteId == 0" pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing"
+            (click)="setVoteExtrinsic()">
             <div class="w-full text-center">
                 Create
             </div>

@@ -41,7 +41,7 @@ export class SmartContractEvidenceService {
                 description: results[i].description,
                 owner: results[i].owner,
                 file: results[i].file,
-                caseId: results[i].case_id,
+                caseId: results[i].caseId,
                 caseTitle: results[i].caseTitle,
                 status: results[i].status
               });
@@ -73,7 +73,7 @@ export class SmartContractEvidenceService {
               description: results.description,
               owner: results.owner,
               file: results.file,
-              caseId: results.case_id,
+              caseId: results.caseId,
               caseTitle: results.caseTitle,
               status: results.status
             };
@@ -105,7 +105,7 @@ export class SmartContractEvidenceService {
                 description: results[i].description,
                 owner: results[i].owner,
                 file: results[i].file,
-                caseId: results[i].case_id,
+                caseId: results[i].caseId,
                 caseTitle: results[i].caseTitle,
                 status: results[i].status
               });

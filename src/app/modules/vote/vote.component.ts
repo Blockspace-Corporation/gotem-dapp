@@ -86,10 +86,12 @@ export class VoteComponent {
 
   public openNewVoterModal(): void {
     this.showNewVoterModal = true;
+    this.voter = new VoterModel();
   }
 
   public openNewVoteModal(): void {
     this.showNewVoteModal = true;
+    this.vote = new VoteModel();
   }
 
   public setVoterExtrinsic(): void {

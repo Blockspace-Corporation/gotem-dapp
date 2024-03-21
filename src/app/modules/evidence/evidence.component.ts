@@ -53,7 +53,7 @@ export class EvidenceComponent {
               description: data[i].description,
               owner: data[i].owner,
               file: data[i].file,
-              caseId: data[i].case_id,
+              caseId: data[i].caseId,
               caseTitle: data[i].caseTitle,
               status: data[i].status
             });

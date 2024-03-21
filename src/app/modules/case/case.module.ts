@@ -18,6 +18,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { ChipModule } from 'primeng/chip';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 import { CaseRoutingModule } from './case-routing.module';
 import { CaseComponent } from './case.component';
@@ -48,7 +49,8 @@ import { CaseDetailComponent } from './case-detail/case-detail.component';
     ProgressSpinnerModule,
     TagModule,
     ChipModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [
     DecimalPipe

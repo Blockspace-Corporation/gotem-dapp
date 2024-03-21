@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { VoterModel } from '../../models/voter.model';
 import { VoteModel } from '../../models/vote.model';
 import { SmartContractVoteService } from '../../services/smart-contract-vote/smart-contract-vote.service';
@@ -10,7 +11,8 @@ import { ExecuteExtrinsicsStatusModel } from '../../models/execution-extrinsics-
 @Component({
   selector: 'app-vote',
   templateUrl: './vote.component.html',
-  styleUrl: './vote.component.scss'
+  styleUrl: './vote.component.scss',
+  providers: [MessageService]
 })
 export class VoteComponent {
   breadcrumbHome: MenuItem | undefined;
@@ -18,6 +20,7 @@ export class VoteComponent {
 
   constructor(
     public decimalPipe: DecimalPipe,
+    private messageService: MessageService,
     private smartContractVoteService: SmartContractVoteService,
     private extrinsicService: ExtrinsicService
   ) { }
@@ -53,7 +56,8 @@ export class VoteComponent {
         }
 
         this.getAllVote();
-      }
+      },
+      error => { }
     )
   }
 
@@ -75,7 +79,8 @@ export class VoteComponent {
             });
           }
         }
-      }
+      },
+      error => { }
     )
   }
 
@@ -92,6 +97,9 @@ export class VoteComponent {
       result => {
         let data: any = result;
         this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
       }
     );
   }
@@ -101,6 +109,9 @@ export class VoteComponent {
       result => {
         let data: any = result;
         this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
       }
     );
   }
@@ -121,6 +132,10 @@ export class VoteComponent {
             this.showNewVoteModal = false;
 
             this.getAllVoter();
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+            this.showProcessModal = false;
           }
         );
       }

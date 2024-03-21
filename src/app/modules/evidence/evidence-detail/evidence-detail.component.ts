@@ -58,7 +58,8 @@ export class EvidenceDetailComponent {
 
         // this is supposedly votes
         this.getAllVoter();
-      }
+      },
+      error => { }
     )
   }
 
@@ -78,7 +79,8 @@ export class EvidenceDetailComponent {
             });
           }
         }
-      }
+      },
+      error => { }
     )
   }
 

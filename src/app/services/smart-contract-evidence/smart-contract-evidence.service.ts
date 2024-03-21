@@ -51,7 +51,7 @@ export class SmartContractEvidenceService {
           observer.complete();
         },
         error => {
-          observer.next([]);
+          observer.error([]);
           observer.complete();
         }
       )
@@ -81,7 +81,7 @@ export class SmartContractEvidenceService {
           observer.complete();
         },
         error => {
-          observer.next(undefined);
+          observer.error(undefined);
           observer.complete();
         }
       )
@@ -113,7 +113,7 @@ export class SmartContractEvidenceService {
           observer.complete();
         },
         error => {
-          observer.next([]);
+          observer.error([]);
           observer.complete();
         }
       )
@@ -130,7 +130,7 @@ export class SmartContractEvidenceService {
           observer.complete();
         },
         error => {
-          observer.next("");
+          observer.error(error);
           observer.complete();
         }
       );

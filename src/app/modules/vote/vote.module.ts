@@ -15,6 +15,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { ChipModule } from 'primeng/chip';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 import { VoteRoutingModule } from './vote-routing.module';
 import { VoteComponent } from './vote.component';
@@ -40,7 +41,8 @@ import { VoteComponent } from './vote.component';
     ProgressSpinnerModule,
     TagModule,
     ChipModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [
     DecimalPipe

@@ -18,6 +18,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { ChipModule } from 'primeng/chip';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
 import { EvidenceRoutingModule } from './evidence-routing.module';
 import { EvidenceComponent } from './evidence.component';
@@ -48,7 +49,8 @@ import { EvidenceDetailComponent } from './evidence-detail/evidence-detail.compo
     ProgressSpinnerModule,
     TagModule,
     ChipModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [
     DecimalPipe

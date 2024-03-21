@@ -84,6 +84,7 @@ export class CaseDetailComponent {
               owner: data[i].owner,
               file: data[i].file,
               caseId: data[i].case_id,
+              caseTitle: data[i].caseTitle,
               status: data[i].status
             });
           }

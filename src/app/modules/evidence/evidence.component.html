@@ -47,8 +47,8 @@
                         <th>Description</th>
                         <th>Owner</th>
                         <th>Votes</th>
-                        <th>Evidence No.</th>
-                        <th>Evidence Title</th>
+                        <th>Case No.</th>
+                        <th>Case Title</th>
                         <th>Status</th>
                     </tr>
                 </ng-template>
@@ -64,8 +64,8 @@
                         <td><span class="p-column-title">Description</span>{{evidence.description}}</td>
                         <td><span class="p-column-title">Owner</span>{{evidence.owner}}</td>
                         <td><span class="p-column-title">Votes</span>-</td>
-                        <td><span class="p-column-title">Evidence No.</span>-</td>
-                        <td><span class="p-column-title">Evidence Title</span>-</td>
+                        <td><span class="p-column-title">Case No.</span>{{evidence.caseId}}</td>
+                        <td><span class="p-column-title">Case Title</span>{{evidence.caseTitle}}</td>
                         <td><span class="p-column-title">Status</span>{{evidence.status}}</td>
                     </tr>
                 </ng-template>
@@ -93,13 +93,7 @@
                                 <input pInputText id="" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Evidence Number</label>
-                                <input pInputText id="" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-6">
+                        <div class="col-12 md:col-12 lg:col-12">
                             <div class="flex flex-column gap-2">
                                 <label for="">Owner:</label>
                                 <input pInputText id="" [(ngModel)]="newEvidence.owner" />
@@ -145,7 +139,8 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false">
+<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false"
+    [draggable]="false">
     <div class="w-full text-center">
         <div class="w-full" *ngIf="executionExtrinsicsStatus == undefined">
             <p-progressSpinner></p-progressSpinner>
@@ -168,3 +163,5 @@
         </div>
     </div>
 </p-dialog>
+
+<p-toast position="top-center"></p-toast>

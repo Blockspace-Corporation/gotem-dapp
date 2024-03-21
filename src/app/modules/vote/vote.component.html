@@ -182,13 +182,13 @@
             <div class="w-full">
                 <p-panel header="Details">
                     <div class="grid">
-                        <div class="col-12 md:col-12 lg:col-12">
+                        <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Case Number:</label>
                                 <input pInputText id="" [(ngModel)]="vote.caseId" />
                             </div>
                         </div>
-                        <div class="col-12 md:col-12 lg:col-12">
+                        <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Evidence Number:</label>
                                 <input pInputText id="" [(ngModel)]="vote.evidenceId" />
@@ -232,7 +232,8 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false">
+<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false"
+    [draggable]="false">
     <div class="w-full text-center">
         <div class="w-full" *ngIf="executionExtrinsicsStatus == undefined">
             <p-progressSpinner></p-progressSpinner>
@@ -255,3 +256,5 @@
         </div>
     </div>
 </p-dialog>
+
+<p-toast></p-toast>

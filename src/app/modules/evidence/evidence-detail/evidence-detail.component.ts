@@ -52,6 +52,7 @@ export class EvidenceDetailComponent {
             owner: data.owner,
             file: data.file,
             caseId: data.case_id,
+            caseTitle: data.caseTitle,
             status: data.status
           };
         }

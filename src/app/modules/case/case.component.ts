@@ -31,7 +31,7 @@ export class CaseComponent {
     'Scam',
     'Web',
     'Person',
-    'Conspiracy/Theory',
+    'ConspiracyTheory',
     'Others'
   ];
   selectedCategory: string = 'Scam';

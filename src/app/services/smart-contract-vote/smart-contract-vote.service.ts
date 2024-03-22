@@ -252,7 +252,7 @@ export class SmartContractVoteService {
     });
   }
 
-  public updateVoteExtrinsic(id: number, data: VoterModel): Observable<any> {
+  public updateVoteExtrinsic(id: number, data: VoteModel): Observable<any> {
     return new Observable<any>((observer) => {
       this.httpClient.put(this.defaultApiEndpoint + "/api/smart-contract/vote/extrinsic/update-vote/" + id, JSON.stringify(data), this.options).subscribe(
         response => {

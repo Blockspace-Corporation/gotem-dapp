@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { VoterModel } from '../../models/voter.model';
 import { VoteModel } from '../../models/vote.model';
 import { SmartContractVoteService } from '../../services/smart-contract-vote/smart-contract-vote.service';
@@ -12,7 +12,7 @@ import { ExecuteExtrinsicsStatusModel } from '../../models/execution-extrinsics-
   selector: 'app-vote',
   templateUrl: './vote.component.html',
   styleUrl: './vote.component.scss',
-  providers: [MessageService]
+  providers: [ConfirmationService, MessageService]
 })
 export class VoteComponent {
   breadcrumbHome: MenuItem | undefined;
@@ -20,12 +20,14 @@ export class VoteComponent {
 
   constructor(
     public decimalPipe: DecimalPipe,
+    private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private smartContractVoteService: SmartContractVoteService,
     private extrinsicService: ExtrinsicService
   ) { }
 
   isLoading: boolean = true;
+
   voters: VoterModel[] = [];
   showNewVoterModal: boolean = false;
   voter: VoterModel = new VoterModel();
@@ -35,6 +37,8 @@ export class VoteComponent {
   vote: VoteModel = new VoteModel();
   caseNumber: string = this.padZeroes(this.vote.caseId, 10);
   evidenceNumber: string = this.padZeroes(this.vote.evidenceId, 10);
+
+  confirmedBurn: boolean = false;
 
   showProcessModal: boolean = false;
   isProcessing: boolean = false;
@@ -111,6 +115,43 @@ export class VoteComponent {
     );
   }
 
+  public updateVoterExtrinsic(): void {
+    this.confirmedBurn = false;
+    this.smartContractVoteService.updateVoterExtrinsic(this.voter.voterId, this.voter).subscribe(
+      result => {
+        let data: any = result;
+        this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+      }
+    );
+  }
+
+  public burnVoterExtrinsic(): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to burn this voter?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptButtonStyleClass: "p-button-danger",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        this.confirmedBurn = true;
+        this.smartContractVoteService.burnVoterExtrinsic(this.voter.voterId).subscribe(
+          result => {
+            let data: any = result;
+            this.signAndSendExtrinsics(data);
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+          }
+        );
+      }
+    });
+  }
+
   public setVoteExtrinsic(): void {
     this.smartContractVoteService.setVoteExtrinsic(this.vote).subscribe(
       result => {
@@ -121,6 +162,43 @@ export class VoteComponent {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
       }
     );
+  }
+
+  public updateVoteExtrinsic(): void {
+    this.confirmedBurn = false;
+    this.smartContractVoteService.updateVoteExtrinsic(this.vote.voteId, this.vote).subscribe(
+      result => {
+        let data: any = result;
+        this.signAndSendExtrinsics(data);
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+      }
+    );
+  }
+
+  public burnVoteExtrinsic(): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to burn this vote?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptButtonStyleClass: "p-button-danger",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      accept: () => {
+        this.confirmedBurn = true;
+        this.smartContractVoteService.burnVoteExtrinsic(this.vote.voteId).subscribe(
+          result => {
+            let data: any = result;
+            this.signAndSendExtrinsics(data);
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.error });
+          }
+        );
+      }
+    });
   }
 
   public signAndSendExtrinsics(data: any): void {

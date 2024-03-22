@@ -12,14 +12,14 @@
                     <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
                         <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" placeholder="Select Category"
-                            [styleClass]="'w-full'"></p-dropdown>
+                            [styleClass]="'w-full'" [showClear]="true"></p-dropdown>
                     </span>
                 </div>
                 <div class="col-12 md:col-4 lg:col-4">
                     <span class="p-input-icon-left w-full">
                         <i class="pi pi-search"></i>
                         <p-dropdown [options]="statuses" [(ngModel)]="selectedStatus" placeholder="Select Status"
-                            [styleClass]="'w-full'"></p-dropdown>
+                            [styleClass]="'w-full'" [showClear]="true"></p-dropdown>
                     </span>
                 </div>
                 <div class="col-12 md:col-4 lg:col-4">
@@ -50,18 +50,54 @@
         <div class="card" *ngIf="!isLoading">
             <p-table [paginator]="true" [rows]="10"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]" styleClass=" p-datatable-striped"
-                [value]="cases" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }">
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]" styleClass="p-datatable-striped"
+                [value]="cases" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }"
+                [globalFilterFields]="['title', 'description', 'owner', 'status']">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th>View</th>
-                        <th>Case No.</th>
-                        <th>Case Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Owner</th>
-                        <th>Bounty</th>
-                        <th>Status</th>
+                        <th style="min-width: 100px;">View</th>
+                        <th style="min-width: 150px;">
+                            <div class="flex align-items-center">
+                                Case No. &nbsp;
+                                <p-columnFilter type="text" field="caseId" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Title &nbsp;
+                                <p-columnFilter type="text" field="title" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Description &nbsp;
+                                <p-columnFilter type="text" field="description" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Category &nbsp;
+                                <p-columnFilter type="text" field="category" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Owner &nbsp;
+                                <p-columnFilter type="text" field="owner" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Bounty &nbsp;
+                                <p-columnFilter type="numeric" field="bounty" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 150px;">
+                            <div class="flex align-items-center">
+                                Status &nbsp;
+                                <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-case let-columns="columns">
@@ -77,7 +113,10 @@
                         <td><span class="p-column-title">Description</span>{{case.description}}</td>
                         <td><span class="p-column-title">Category</span>{{case.category}}</td>
                         <td><span class="p-column-title">Owner</span>{{case.owner}}</td>
-                        <td><span class="p-column-title">Bounty</span>{{decimalPipe.transform(case.bounty) || "0"}}</td>
+                        <td class="text-right">
+                            <span class="p-column-title">Bounty</span>
+                            {{decimalPipe.transform(case.bounty) || "0"}}
+                        </td>
                         <td>
                             <span class="p-column-title">Status</span>
                             <p-chip label="{{case.status}}" icon="pi pi-info-circle"></p-chip>

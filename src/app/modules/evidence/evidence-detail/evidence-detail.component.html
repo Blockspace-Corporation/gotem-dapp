@@ -112,9 +112,20 @@
                         [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Vote Credit</th>
-                                <th>Vote Result</th>
-                                <th>Distribution Result</th>
+                                <th style="min-width: 200px;">
+                                    <div class="flex align-items-center">
+                                        Vote Credit &nbsp;
+                                        <p-columnFilter type="text" field="yesCredit" display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
+                                <th style="min-width: 200px;">Vote Result</th>
+                                <th style="min-width: 200px;">
+                                    <div class="flex align-items-center">
+                                        Distribution Result &nbsp;
+                                        <p-columnFilter type="numeric" field="destributionReward"
+                                            display="menu"></p-columnFilter>
+                                    </div>
+                                </th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-vote>
@@ -124,7 +135,9 @@
                                     {{decimalPipe.transform(vote.yesCredit) || "0"}}
                                 </td>
                                 <td><span class="p-column-title">Vote Result</span>-</td>
-                                <td><span class="p-column-title">Distribution Result</span>{{vote.destributionReward}}
+                                <td class="text-right">
+                                    <span class="p-column-title">Distribution Result</span>
+                                    {{vote.destributionReward}}
                                 </td>
                             </tr>
                         </ng-template>

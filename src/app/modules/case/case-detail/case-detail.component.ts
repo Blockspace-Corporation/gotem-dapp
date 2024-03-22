@@ -36,7 +36,7 @@ export class CaseDetailComponent {
     'Scam',
     'Web',
     'Person',
-    'Conspiracy/Theory',
+    'ConspiracyTheory',
     'Others'
   ];
   statuses: string[] = [

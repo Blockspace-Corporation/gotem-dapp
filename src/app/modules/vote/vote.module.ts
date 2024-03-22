@@ -16,6 +16,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { TagModule } from 'primeng/tag';
 import { ChipModule } from 'primeng/chip';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 
 import { VoteRoutingModule } from './vote-routing.module';
@@ -44,6 +45,7 @@ import { VoteComponent } from './vote.component';
     TagModule,
     ChipModule,
     ButtonModule,
+    ConfirmDialogModule,
     ToastModule
   ],
   providers: [

@@ -47,14 +47,44 @@
                 [value]="evidences" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th>View</th>
-                        <th>Evidence No.</th>
-                        <th>Description</th>
-                        <th>Owner</th>
-                        <th>Votes</th>
-                        <th>Case No.</th>
-                        <th>Case Title</th>
-                        <th>Status</th>
+                        <th style="min-width: 100px;">View</th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Evidence No. &nbsp;
+                                <p-columnFilter type="text" field="evidenceId" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Description &nbsp;
+                                <p-columnFilter type="text" field="description" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Owner &nbsp;
+                                <p-columnFilter type="text" field="owner" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 100px;">Votes</th>
+                        <th style="min-width: 150px;">
+                            <div class="flex align-items-center">
+                                Case No. &nbsp;
+                                <p-columnFilter type="text" field="caseId" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Case Title &nbsp;
+                                <p-columnFilter type="text" field="caseTitle" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 150px;">
+                            <div class="flex align-items-center">
+                                Status &nbsp;
+                                <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-evidence let-columns="columns">
@@ -69,7 +99,7 @@
                         <td><span class="p-column-title">Description</span>{{evidence.description}}</td>
                         <td><span class="p-column-title">Owner</span>{{evidence.owner}}</td>
                         <td><span class="p-column-title">Votes</span>-</td>
-                        <td><span class="p-column-title">Case No.</span>{{evidence.caseId}}</td>
+                        <td><span class="p-column-title">Case No.</span>{{padZeroes(evidence.caseId, 10)}}</td>
                         <td><span class="p-column-title">Case Title</span>{{evidence.caseTitle}}</td>
                         <td>
                             <span class="p-column-title">Status</span>

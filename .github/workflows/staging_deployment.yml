@@ -17,16 +17,16 @@ jobs:
       - name: Building application
         run: |
           npm run build --
-      - name: Setting up AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.4.0
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - name: Uploading to STAGING EC2
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          export_default_credentials: true
+      - name: Deploy to GCP Compute Engine
         run: |
           mkdir ~/.ssh
-          echo -e "${{ secrets.STAGING_PRIVATE_KEY }}" > ~/.ssh/dec-keypair
-          chmod 400 ~/.ssh/dec-keypair
-          rsync -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/dec-keypair" -r dist/browser/* ${{ secrets.STAGING_USERNAME }}@${{ secrets.STAGING_HOST }}:${{ secrets.STAGING_PATH }}
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/dec-keypair ${{ secrets.STAGING_USERNAME }}@${{ secrets.STAGING_HOST }} 'sudo systemctl restart nginx'
+          echo -e "${{ secrets.GCP_PRIVATE_KEY }}" > ~/.ssh/gotem-keypair
+          chmod 400 ~/.ssh/gotem-keypair
+          gcloud compute scp --recurse --ssh-key-file=~/.ssh/gotem-keypair dist/browser/* ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }}:${{ secrets.GCP_PATH }} --zone=${{ secrets.GCP_ZONE }}
+          gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }} --zone=${{ secrets.GCP_ZONE }} --command="sudo systemctl restart nginx"

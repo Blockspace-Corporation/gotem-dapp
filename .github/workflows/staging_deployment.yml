@@ -27,8 +27,8 @@ jobs:
         run: |
           mkdir ~/.ssh
           echo -e "${{ secrets.GCP_PRIVATE_KEY }}" > ~/.ssh/google_compute_engine
-          chmod 400 ~/.ssh/gotem-keypair
+          chmod 400 ~/.ssh/google_compute_engine
           echo -e "${{ secrets.GCP_PUBLIC_KEY }}" > ~/.ssh/google_compute_engine.pub
-          chmod 644 ~/.ssh/gotem-keypair.pub
+          chmod 644 ~/.ssh/google_compute_engine.pub
           gcloud compute scp --recurse dist/browser/* ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }}:${{ secrets.GCP_PATH }} --zone=${{ secrets.GCP_ZONE }}
           gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }} --zone=${{ secrets.GCP_ZONE }} --command="sudo systemctl restart nginx"

@@ -23,11 +23,9 @@ jobs:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           export_default_credentials: true
-      - name: Deploy to GCP Compute Engine
+      - name: Upload files to VM (using pre-configured SSH key)
         run: |
-          mkdir ~/.ssh
-          echo -e "${{ secrets.GCP_PRIVATE_KEY }}" > ~/.ssh/gotem-keypair
-          chmod 400 ~/.ssh/gotem-keypair
-          echo -e "${{ secrets.GCP_PUBLIC_KEY }}" > ~/.ssh/gotem-keypair.pub
-          gcloud compute scp --recurse --ssh-key-file=~/.ssh/gotem-keypair dist/browser/* ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }}:${{ secrets.GCP_PATH }} --zone=${{ secrets.GCP_ZONE }}
-          gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }} --zone=${{ secrets.GCP_ZONE }} --command="sudo systemctl restart nginx"
+            gcloud compute scp --recurse dist/browser/* ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }}:${{ secrets.GCP_PATH }} --zone=${{ secrets.GCP_ZONE }}
+      - name: Deploy application on VM (assuming commands on VM)
+        run: |
+            gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }} --zone=${{ secrets.GCP_ZONE }} --command="cd ${{ secrets.GCP_PATH }} && sudo systemctl restart nginx"

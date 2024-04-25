@@ -25,8 +25,5 @@ jobs:
           export_default_credentials: true
       - name: Deploy to GCP Compute Engine
         run: |
-          mkdir ~/.ssh
-          echo -e "${{ secrets.GCP_PRIVATE_KEY }}" > ~/.ssh/gotem-keypair
-          chmod 400 ~/.ssh/gotem-keypair
-          gcloud compute scp --recurse --ssh-key-file=~/.ssh/gotem-keypair dist/browser/* ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }}:${{ secrets.GCP_PATH }} --zone=${{ secrets.GCP_ZONE }}
+          gcloud compute scp --recurse dist/browser/* ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }}:${{ secrets.GCP_PATH }} --zone=${{ secrets.GCP_ZONE }}
           gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_HOST }} --zone=${{ secrets.GCP_ZONE }} --command="sudo systemctl restart nginx"

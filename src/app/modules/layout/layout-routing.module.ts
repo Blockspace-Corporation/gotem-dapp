@@ -12,6 +12,7 @@ const routes: Routes = [
       { path: 'case', loadChildren: () => import('../case/case.module').then(m => m.CaseModule) },
       { path: 'evidence', loadChildren: () => import('../evidence/evidence.module').then(m => m.EvidenceModule) },
       { path: 'vote', loadChildren: () => import('../vote/vote.module').then(m => m.VoteModule) },
+      { path: 'investigator', loadChildren: () => import('../investigator/investigator.module').then(m => m.InvestigatorModule) }
     ]
   },
 ];

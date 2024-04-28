@@ -1,1 +1,14 @@
 node_modules
+angular.json
+.angular/cache/17.3.0/gotem-dapp/.tsbuildinfo
+.angular/cache/17.3.0/vite/deps/_metadata.json
+.angular/cache/17.3.0/vite/deps/@polkadot_api.js
+.angular/cache/17.3.0/vite/deps/chunk-NGLC6BQQ.js
+.angular/cache/17.3.0/vite/deps/chunk-NGLC6BQQ.js.map
+.angular/cache/17.3.0/vite/deps/chunk-PFHH4EP6.js
+.angular/cache/17.3.0/vite/deps/chunk-PFHH4EP6.js.map
+.angular/cache/17.3.0/vite/deps/polkadot-angular-identicon.js
+.angular/cache/17.3.0/vite/deps/primeng_dropdown.js
+.angular/cache/17.3.0/vite/deps/primeng_fileupload.js
+.angular/cache/17.3.0/vite/deps/primeng_table.js
+.angular/cache/17.3.0/vite/deps/primeng_toast.js

@@ -12,3 +12,5 @@ angular.json
 .angular/cache/17.3.0/vite/deps/primeng_fileupload.js
 .angular/cache/17.3.0/vite/deps/primeng_table.js
 .angular/cache/17.3.0/vite/deps/primeng_toast.js
+.angular/cache/17.3.0/gotem-dapp/.tsbuildinfo
+.DS_Store

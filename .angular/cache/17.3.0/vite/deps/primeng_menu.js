@@ -1,4 +1,10 @@
 import {
+  animate,
+  style,
+  transition,
+  trigger
+} from "./chunk-U7EMTJOW.js";
+import {
   Tooltip,
   TooltipModule
 } from "./chunk-MVVAS5PI.js";
@@ -17,12 +23,6 @@ import {
   UniqueComponentId,
   zindexutils
 } from "./chunk-GKXWE7E4.js";
-import {
-  animate,
-  style,
-  transition,
-  trigger
-} from "./chunk-U7EMTJOW.js";
 import {
   RouterLink,
   RouterLinkActive,

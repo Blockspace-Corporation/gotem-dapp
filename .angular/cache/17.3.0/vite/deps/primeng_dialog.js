@@ -2,6 +2,14 @@ import {
   TimesIcon
 } from "./chunk-ARIZ4KA7.js";
 import {
+  animate,
+  animation,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from "./chunk-U7EMTJOW.js";
+import {
   ButtonDirective,
   ButtonModule
 } from "./chunk-H3DT6EUO.js";
@@ -25,14 +33,6 @@ import {
   UniqueComponentId,
   zindexutils
 } from "./chunk-GKXWE7E4.js";
-import {
-  animate,
-  animation,
-  style,
-  transition,
-  trigger,
-  useAnimation
-} from "./chunk-U7EMTJOW.js";
 import {
   CommonModule,
   DOCUMENT,

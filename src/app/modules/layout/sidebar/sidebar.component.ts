@@ -30,6 +30,11 @@ export class SidebarComponent {
       label: 'Vote',
       icon: 'pi pi-fw pi-check-square',
       routerLink: '/app/vote'
+    },
+    {
+      label: 'Investigators',
+      icon: 'pi pi-fw pi-users',
+      routerLink: '/app/investigators'
     }
   ];
 

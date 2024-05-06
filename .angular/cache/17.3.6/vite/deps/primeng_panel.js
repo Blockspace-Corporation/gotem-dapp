@@ -2,13 +2,6 @@ import {
   PlusIcon
 } from "./chunk-G5GLPHMU.js";
 import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from "./chunk-U7EMTJOW.js";
-import {
   Ripple,
   RippleModule
 } from "./chunk-MIKU3NKW.js";
@@ -22,6 +15,13 @@ import {
   SharedModule,
   UniqueComponentId
 } from "./chunk-GKXWE7E4.js";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from "./chunk-U7EMTJOW.js";
 import {
   CommonModule,
   NgClass,

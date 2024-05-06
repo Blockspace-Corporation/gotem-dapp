@@ -1,13 +1,12 @@
 import {
-  animate,
-  style,
-  transition,
-  trigger
-} from "./chunk-U7EMTJOW.js";
-import {
   Tooltip,
   TooltipModule
 } from "./chunk-MVVAS5PI.js";
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule
+} from "./chunk-BJ54UR2O.js";
 import {
   Ripple,
   RippleModule
@@ -24,10 +23,11 @@ import {
   zindexutils
 } from "./chunk-GKXWE7E4.js";
 import {
-  RouterLink,
-  RouterLinkActive,
-  RouterModule
-} from "./chunk-BJ54UR2O.js";
+  animate,
+  style,
+  transition,
+  trigger
+} from "./chunk-U7EMTJOW.js";
 import {
   DomSanitizer
 } from "./chunk-2JYBFHPR.js";

@@ -1,1 +1,264 @@
-<!-- Investigator Module -->
+<div class="w-full mb-3">
+    <div class="page-title">
+        <span><i class="pi pi-fw pi-folder-open" style="font-size: 1.3rem;"></i>&nbsp;Investigators</span>
+    </div>
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
+</div>
+<div class="w-full mb-3">
+    <p-toolbar>
+        <div class="p-toolbar-group-start">
+            <div class="grid" style="margin: -5px;">
+                <!-- <div class="col-12 md:col-6 lg:col-6">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-search"></i>
+                        <p-dropdown [options]="statuses" [(ngModel)]="selectedStatus" placeholder="Select Status"
+                            [styleClass]="'w-full'"></p-dropdown>
+                    </span>
+                </div> -->
+                <div class="col-12 md:col-6 lg:col-12">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-search"></i>
+                        <input pInputText placeholder="Search" class="w-full" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="p-toolbar-group-center"></div>
+        <div class="p-toolbar-group-end">
+            <div class="grid" style="margin: -5px;">
+                <div class="col-12 md:col-12 lg:col-12">
+                    <button type="button" pButton class="p-button p-button-rounded" (click)="openNewInvestigatorModal()">
+                        New Investigator
+                    </button>
+                </div>
+            </div>
+        </div>
+    </p-toolbar>
+</div>
+<!-- (click)="openNewEvidenceModal() -->
+    
+    <!-- <div class="w-full mb-3">
+    <p-panel header="Evidences">
+        <div *ngIf="isLoading">
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+        </div>
+        <div class="card" *ngIf="!isLoading">
+            <p-table [paginator]="true" [rows]="10"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 50, 100]" styleClass="p-datatable-striped"
+                [value]="evidences" [responsive]="true" [tableStyle]="{ 'min-width': '10rem' }">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th style="min-width: 100px;">View</th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Evidence No. &nbsp;
+                                <p-columnFilter type="text" field="evidenceId" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Description &nbsp;
+                                <p-columnFilter type="text" field="description" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Owner &nbsp;
+                                <p-columnFilter type="text" field="owner" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 100px;">Votes</th>
+                        <th style="min-width: 150px;">
+                            <div class="flex align-items-center">
+                                Case No. &nbsp;
+                                <p-columnFilter type="text" field="caseId" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 200px;">
+                            <div class="flex align-items-center">
+                                Case Title &nbsp;
+                                <p-columnFilter type="text" field="caseTitle" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 150px;">
+                            <div class="flex align-items-center">
+                                Status &nbsp;
+                                <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-evidence let-columns="columns">
+                    <tr>
+                        <td>
+                            <button type="button" pButton class="p-button p-button-rounded p-button-sm"
+                                (click)="viewEvidenceDetail(evidence)">
+                                <i class="pi pi-fw pi-eye"></i> View
+                            </button>
+                        </td>
+                        <td><span class="p-column-title">Evidence No.</span>{{padZeroes(evidence.evidenceId, 10)}}</td>
+                        <td><span class="p-column-title">Description</span>{{evidence.description}}</td>
+                        <td><span class="p-column-title">Owner</span>{{evidence.owner}}</td>
+                        <td><span class="p-column-title">Votes</span>-</td>
+                        <td><span class="p-column-title">Case No.</span>{{padZeroes(evidence.caseId, 10)}}</td>
+                        <td><span class="p-column-title">Case Title</span>{{evidence.caseTitle}}</td>
+                        <td>
+                            <span class="p-column-title">Status</span>
+                            <p-chip label="{{evidence.status}}" icon="pi pi-info-circle"></p-chip>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-panel>
+</div> -->
+
+<p-dialog header="New Investigator" [(visible)]="showNewInvestigatorModal" [modal]="true" [style]="{ width: '80vw' }"
+    [draggable]="false" [resizable]="false">
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+            <div class="w-full">
+                <p-panel header="Details">
+                    <div class="grid">
+                        <!-- <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Case Number:</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.caseId" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Case Title</label>
+                                <input pInputText id="" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Owner:</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Description:</label>
+                                <textarea rows="5" cols="30" pInputTextarea class="w-full"
+                                    [(ngModel)]="newInvestigator.description"></textarea>
+                            </div>
+                        </div> -->
+                        <div class="col-12 md:col-6 lg:col-12">
+                            <div class="flex flex-column gap-1">
+                                <label for="">Profile Name</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="">First Name</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Last Name</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner"/>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-12">
+                            <div class="flex flex-column gap-1">
+                                <label for="">Address</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Email</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="">Re-type Email</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner"/>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-12">
+                            <div class="flex flex-column gap-1">
+                                <label for="">Wallet Public Address</label>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-6">
+            <div class="w-full mb-3">
+                <p-panel header="Upload Credentials">
+                    <div class="grid">
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                                    [multiple]="true" accept="image/*">
+                                    <ng-template pTemplate="content">
+
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+                <p-panel header="Upload Profile Picture">
+                    <div class="grid">
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                                    [multiple]="true" accept="image/*">
+                                    <ng-template pTemplate="content">
+
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+    </div>
+     <ng-template pTemplate="footer">
+        <button pButton class="p-button p-button-rounded" [disabled]="isProcessing"
+            (click)="setEvidenceExtrinsic()">
+            <div style="text-align: left;">
+                Create
+            </div>
+        </button>
+    </ng-template>
+</p-dialog>
+<!--
+
+<p-dialog [(visible)]="showProcessModal" [style]="{width: '60vw'}" [modal]="true" [closable]="false"
+    [draggable]="false">
+    <div class="w-full text-center">
+        <div class="w-full" *ngIf="executionExtrinsicsStatus == undefined">
+            <p-progressSpinner></p-progressSpinner>
+            <div class="w-full mt-3" style="white-space: pre-wrap;">
+                Processing
+            </div>
+        </div>
+        <div *ngIf="executionExtrinsicsStatus != undefined">
+            <div class="w-full mb-2" *ngIf="executionExtrinsicsStatus.isError == false">
+                <i class="pi pi-check" style="font-size: 5rem; font-weight: bold; color: rgb(119, 255, 119);"></i>
+            </div>
+            <div class="w-full mb-2" *ngIf="executionExtrinsicsStatus.isError == true">
+                <i class="pi pi-times" style="font-size: 5rem; font-weight: bold; color: rgb(202, 74, 74);"></i>
+            </div>
+            <div class="w-full mb-3" style="white-space: pre-wrap;">
+                {{executionExtrinsicsStatus.message}}
+            </div>
+            <button pButton type="button" label="Okay" class="p-button"
+                (click)="showProcessModal = false; executionExtrinsicsStatus = undefined;"></button>
+        </div>
+    </div>
+</p-dialog>
+
+<p-toast position="top-center"></p-toast> -->

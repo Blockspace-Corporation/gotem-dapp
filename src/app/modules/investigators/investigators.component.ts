@@ -106,18 +106,6 @@ export class InvestigatorsComponent {
       }
     );
   }
-
-  // public viewEvidenceDetail(data: EvidenceNftModel): void {
-  //   this.router.navigate(['/app/evidence/detail/' + data.evidenceId]);
-  // }
-  
-  // public padZeroes(number: number, length: number): string {
-  //   let str = number.toString();
-  //   while (str.length < length) {
-  //     str = '0' + str;
-  //   }
-  //   return str;
-  // }
   
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };

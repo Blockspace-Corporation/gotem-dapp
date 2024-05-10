@@ -39,43 +39,43 @@
                         <div class="col-12 md:col-6 lg:col-12">
                             <div class="flex flex-column gap-1">
                                 <label for="">Profile Name</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                                <input pInputText id="" [(ngModel)]="newInvestigator.profile_name" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">First Name</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                                <input pInputText id="" [(ngModel)]="newInvestigator.first_name" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Last Name</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner"/>
+                                <input pInputText id="" [(ngModel)]="newInvestigator.last_name"/>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-12">
                             <div class="flex flex-column gap-1">
                                 <label for="">Address</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                                <input pInputText id="" [(ngModel)]="newInvestigator.address" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Email</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                                <input pInputText id="" [(ngModel)]="newInvestigator.email" />
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-6">
                             <div class="flex flex-column gap-2">
                                 <label for="">Re-type Email</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner"/>
+                                <input pInputText/>
                             </div>
                         </div>
                         <div class="col-12 md:col-6 lg:col-12">
                             <div class="flex flex-column gap-1">
                                 <label for="">Wallet Public Address</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.owner" />
+                                <input pInputText id="" [(ngModel)]="newInvestigator.wallet_public_address" />
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
     </div>
      <ng-template pTemplate="footer">
         <button pButton class="p-button p-button-rounded" [disabled]="isProcessing"
-            (click)="setEvidenceExtrinsic()">
+            (click)="createInvestigator()">
             <div style="text-align: left;">
                 Create
             </div>

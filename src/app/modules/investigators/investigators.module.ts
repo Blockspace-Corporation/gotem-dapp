@@ -24,6 +24,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { InvestigatorsRoutingModule } from './investigators-routing.module';
 import { InvestigatorsComponent } from './investigators.component';
+import { InvestigatorModel } from '../../models/investigator.model';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { InvestigatorsComponent } from './investigators.component';
     ToastModule
   ],
   providers: [
-    DecimalPipe
+    DecimalPipe,
+    InvestigatorModel
   ]
 })
 export class InvestigatorsModule { }

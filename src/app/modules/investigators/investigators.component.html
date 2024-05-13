@@ -31,96 +31,96 @@
 
 <p-dialog header="New Investigator" [(visible)]="showNewInvestigatorModal" [modal]="true" [style]="{ width: '80vw' }"
     [draggable]="false" [resizable]="false">
-    <div class="grid">
-        <div class="col-12 md:col-6 lg:col-6">
-            <div class="w-full">
-                <p-panel header="Details">
-                    <div class="grid">
-                        <div class="col-12 md:col-6 lg:col-12">
-                            <div class="flex flex-column gap-1">
-                                <label for="">Profile Name</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.profile_name" />
+    <form (ngSubmit)="createInvestigator()" #formData="ngForm">
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+                <div class="w-full">
+                    <p-panel header="Details">
+                        <div class="grid">
+                            <div class="col-12 md:col-6 lg:col-12">
+                                <div class="flex flex-column gap-1">
+                                    <label for="">Profile Name</label>
+                                    <input pInputText id="" type="text" name="profile_name" ngModel/>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-6 lg:col-6">
+                                <div class="flex flex-column gap-2">
+                                    <label for="">First Name</label>
+                                    <input pInputText id="" type="text" name="first_name" ngModel/>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-6 lg:col-6">
+                                <div class="flex flex-column gap-2">
+                                    <label for="">Last Name</label>
+                                    <input pInputText id="" type="text" name="last_name" ngModel/>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-6 lg:col-12">
+                                <div class="flex flex-column gap-1">
+                                    <label for="">Address</label>
+                                    <input pInputText id="" type="text" name="address" ngModel/>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-6 lg:col-6">
+                                <div class="flex flex-column gap-2">
+                                    <label for="">Email</label>
+                                    <input pInputText id="" type="email" name="email" ngModel/>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-6 lg:col-6">
+                                <div class="flex flex-column gap-2">
+                                    <label for="">Re-type Email</label>
+                                    <input pInputText/>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-6 lg:col-12">
+                                <div class="flex flex-column gap-1">
+                                    <label for="">Wallet Public Address</label>
+                                    <input pInputText id="" name="wallet_public_address" ngModel/>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">First Name</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.first_name" />
+                    </p-panel>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+                <div class="w-full mb-3">
+                    <p-panel header="Upload Credentials">
+                        <div class="grid">
+                            <div class="col-12 md:col-12 lg:col-12">
+                                <div class="flex flex-column gap-2">
+                                    <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                                        [multiple]="true" accept="image/*">
+                                        <ng-template pTemplate="content">
+
+                                        </ng-template>
+                                    </p-fileUpload>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Last Name</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.last_name"/>
+                    </p-panel>
+                    <p-panel header="Upload Profile Picture">
+                        <div class="grid">
+                            <div class="col-12 md:col-12 lg:col-12">
+                                <div class="flex flex-column gap-2">
+                                    <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                                        [multiple]="true" accept="image/*">
+                                        <ng-template pTemplate="content">
+
+                                        </ng-template>
+                                    </p-fileUpload>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 md:col-6 lg:col-12">
-                            <div class="flex flex-column gap-1">
-                                <label for="">Address</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.address" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Email</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.email" />
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-6">
-                            <div class="flex flex-column gap-2">
-                                <label for="">Re-type Email</label>
-                                <input pInputText/>
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-6 lg:col-12">
-                            <div class="flex flex-column gap-1">
-                                <label for="">Wallet Public Address</label>
-                                <input pInputText id="" [(ngModel)]="newInvestigator.wallet_public_address" />
-                            </div>
-                        </div>
-                    </div>
-                </p-panel>
+                    </p-panel>
+                </div>
             </div>
         </div>
-        <div class="col-12 md:col-6 lg:col-6">
-            <div class="w-full mb-3">
-                <p-panel header="Upload Credentials">
-                    <div class="grid">
-                        <div class="col-12 md:col-12 lg:col-12">
-                            <div class="flex flex-column gap-2">
-                                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                                    [multiple]="true" accept="image/*">
-                                    <ng-template pTemplate="content">
-
-                                    </ng-template>
-                                </p-fileUpload>
-                            </div>
-                        </div>
-                    </div>
-                </p-panel>
-                <p-panel header="Upload Profile Picture">
-                    <div class="grid">
-                        <div class="col-12 md:col-12 lg:col-12">
-                            <div class="flex flex-column gap-2">
-                                <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                                    [multiple]="true" accept="image/*">
-                                    <ng-template pTemplate="content">
-
-                                    </ng-template>
-                                </p-fileUpload>
-                            </div>
-                        </div>
-                    </div>
-                </p-panel>
-            </div>
-        </div>
-    </div>
-     <ng-template pTemplate="footer">
         <button pButton class="p-button p-button-rounded" [disabled]="isProcessing"
-            (click)="createInvestigator()">
+            type="submit">
             <div style="text-align: left;">
                 Create
             </div>
         </button>
-    </ng-template>
+    </form>
 </p-dialog>

@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { ExecuteExtrinsicsStatusModel } from '../../models/execution-extrinsics-status.model';
 import { InvestigatorModel } from '../../models/investigator.model';
 import { InvestigatorsService } from '../../services/investigators/investigators.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-investigators',
@@ -16,24 +16,21 @@ import { InvestigatorsService } from '../../services/investigators/investigators
 export class InvestigatorsComponent {
   breadcrumbHome: MenuItem | undefined;
   breadcrumbItems: MenuItem[] | undefined;
+  formData: any = {};
 
   constructor(
     private router: Router,
     public decimalPipe: DecimalPipe,
-    private messageService: MessageService,
-    private investigatorModel: InvestigatorModel,
-    private investigatorService: InvestigatorsService
+    private investigatorService: InvestigatorsService,
+    private http: HttpClient
   ) { }
 
   isLoading: boolean = true;
   investigators: InvestigatorModel[] = [];
   showNewInvestigatorModal: boolean = false;
-  newInvestigator: InvestigatorModel = new InvestigatorModel();
 
   showProcessModal: boolean = false;
   isProcessing: boolean = false;
-
-  executionExtrinsicsStatus: ExecuteExtrinsicsStatusModel | undefined;
 
   public getAllInvestigators(): void {
     this.investigators = []
@@ -65,16 +62,12 @@ export class InvestigatorsComponent {
   }
 
   public createInvestigator(): void {
-    this.investigatorService.addInvestigator(this.newInvestigator.profile_name).subscribe(
-      result => {
-        let data:any = result;
-        console.log(data);
-        this.showProcessModal;
-      },
-      error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
-      }
-    )
+    this.http.post<any>('http://localhost:3000/investigator', this.formData)
+      .subscribe(response => {
+        console.log('Response from NestJS API:', response);
+      }, error => {
+        console.error('Error:', error);
+      });
   }
   
   ngOnInit() {

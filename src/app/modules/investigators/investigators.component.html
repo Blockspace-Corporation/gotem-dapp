@@ -31,7 +31,7 @@
 
 <p-dialog header="New Investigator" [(visible)]="showNewInvestigatorModal" [modal]="true" [style]="{ width: '80vw' }"
     [draggable]="false" [resizable]="false">
-    <form (ngSubmit)="createInvestigator()" #formData="ngForm">
+    <form (ngSubmit)="addInvestigator()" #formData="ngForm">
         <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
                 <div class="w-full">
@@ -39,44 +39,44 @@
                         <div class="grid">
                             <div class="col-12 md:col-6 lg:col-12">
                                 <div class="flex flex-column gap-1">
-                                    <label for="">Profile Name</label>
-                                    <input pInputText id="" type="text" name="profile_name" ngModel/>
+                                    <label for="profile_name">Profile Name</label>
+                                    <input pInputText [(ngModel)]="newInvestigator.profile_name" id="profile_name" type="text" name="profile_name"/>
                                 </div>
                             </div>
                             <div class="col-12 md:col-6 lg:col-6">
                                 <div class="flex flex-column gap-2">
-                                    <label for="">First Name</label>
-                                    <input pInputText id="" type="text" name="first_name" ngModel/>
+                                    <label for="first_name">First Name</label>
+                                    <input pInputText [(ngModel)]="newInvestigator.first_name" id="first_name" type="text" name="first_name"/>
                                 </div>
                             </div>
                             <div class="col-12 md:col-6 lg:col-6">
                                 <div class="flex flex-column gap-2">
-                                    <label for="">Last Name</label>
-                                    <input pInputText id="" type="text" name="last_name" ngModel/>
+                                    <label for="last_name">Last Name</label>
+                                    <input pInputText [(ngModel)]="newInvestigator.last_name" id="last_name" type="text" name="last_name"/>
                                 </div>
                             </div>
                             <div class="col-12 md:col-6 lg:col-12">
                                 <div class="flex flex-column gap-1">
-                                    <label for="">Address</label>
-                                    <input pInputText id="" type="text" name="address" ngModel/>
+                                    <label for="address">Address</label>
+                                    <input pInputText [(ngModel)]="newInvestigator.address" id="address" type="text" name="address"/>
                                 </div>
                             </div>
                             <div class="col-12 md:col-6 lg:col-6">
                                 <div class="flex flex-column gap-2">
-                                    <label for="">Email</label>
-                                    <input pInputText id="" type="email" name="email" ngModel/>
+                                    <label for="email">Email</label>
+                                    <input pInputText [(ngModel)]="newInvestigator.email" id="email" type="email" name="email"/>
                                 </div>
                             </div>
                             <div class="col-12 md:col-6 lg:col-6">
                                 <div class="flex flex-column gap-2">
-                                    <label for="">Re-type Email</label>
+                                    <label for="retypeemail">Re-type Email</label>
                                     <input pInputText/>
                                 </div>
                             </div>
                             <div class="col-12 md:col-6 lg:col-12">
                                 <div class="flex flex-column gap-1">
-                                    <label for="">Wallet Public Address</label>
-                                    <input pInputText id="" name="wallet_public_address" ngModel/>
+                                    <label for="wallet_public_address">Wallet Public Address</label>
+                                    <input pInputText [(ngModel)]="newInvestigator.wallet_public_address" id="wallet_public_address" name="wallet_public_address" ngModel/>
                                 </div>
                             </div>
                         </div>

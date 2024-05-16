@@ -7,11 +7,6 @@ import {
   TooltipModule
 } from "./chunk-MVVAS5PI.js";
 import {
-  RouterLink,
-  RouterLinkActive,
-  RouterModule
-} from "./chunk-BJ54UR2O.js";
-import {
   Ripple,
   RippleModule
 } from "./chunk-MIKU3NKW.js";
@@ -29,6 +24,11 @@ import {
   UniqueComponentId,
   zindexutils
 } from "./chunk-GKXWE7E4.js";
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule
+} from "./chunk-BJ54UR2O.js";
 import "./chunk-2JYBFHPR.js";
 import "./chunk-HG3MNM4S.js";
 import {

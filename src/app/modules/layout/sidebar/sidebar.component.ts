@@ -34,7 +34,7 @@ export class SidebarComponent {
     {
       label: 'Investigators',
       icon: 'pi pi-fw pi-users',
-      routerLink: '/app/investigators'
+      routerLink: '/app/investigator/register'
     }
   ];
 

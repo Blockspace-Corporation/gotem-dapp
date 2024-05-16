@@ -26,7 +26,6 @@ import { InvestigatorsRoutingModule } from './investigators-routing.module';
 import { InvestigatorsComponent } from './investigators.component';
 import { InvestigatorModel } from '../../models/investigator.model';
 
-
 @NgModule({
   declarations: [
     InvestigatorsComponent

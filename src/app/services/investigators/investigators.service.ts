@@ -1,31 +1,74 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-
-export interface Investigator {
-  investigator_id: number;
-  profile_name: string;
-  first_name: string;
-  last_name: string;
-  address: string;
-  email: string;
-  wallet_public_address: string;
-}
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppSettings } from '../../app-settings';
+import { Observable, Subject } from 'rxjs';
+import { InvestigatorModel } from '../../models/investigator.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvestigatorsService {
-  apiUrl = 'http://localhost:3000/investigator';
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(private http: HttpClient) {}
-  getInvestigators() {
-    return this.http.get<Investigator[]>(this.apiUrl);
+
+  constructor(
+    private appSettings: AppSettings,
+    private httpClient: HttpClient
+  ) { }
+
+  defaultApiEndpoint: string = this.appSettings.apiEndpoint;
+  options: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+  };
+
+  registerInvestigator(data: InvestigatorModel): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.post(this.defaultApiEndpoint + "/api/investigator/register", JSON.stringify(data), this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
   }
-  addInvestigator(investigator: Investigator): Observable<Investigator> {
-    return this.http.post<Investigator>(this.apiUrl, investigator)
+
+  uploadCredentials(data: String): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.post(this.defaultApiEndpoint + "/api/investigator/upload-credentials", data, this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
   }
-  deleteInvestigator(investigator_id: number) {
-    return this.http.delete(`${this.apiUrl}/${investigator_id}`);
+
+  uploadProfilePicture(data: String): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.httpClient.post(this.defaultApiEndpoint + "/api/investigator/upload-profile-picture", data, this.options).subscribe(
+        response => {
+          let results: any = response;
+
+          observer.next(results);
+          observer.complete();
+        },
+        error => {
+          observer.error(error);
+          observer.complete();
+        }
+      );
+    });
   }
 }

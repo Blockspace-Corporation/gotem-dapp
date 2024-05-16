@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { MenuItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InvestigatorModel } from '../../models/investigator.model';
-import { InvestigatorsService, Investigator } from '../../services/investigators/investigators.service';
-import { HttpClient } from '@angular/common/http';
+import { InvestigatorsService } from '../../services/investigators/investigators.service';
 
 @Component({
   selector: 'app-investigators',
@@ -16,67 +14,55 @@ import { HttpClient } from '@angular/common/http';
 export class InvestigatorsComponent {
   breadcrumbHome: MenuItem | undefined;
   breadcrumbItems: MenuItem[] | undefined;
-  formData: any = {};
-  investigator: Investigator[] = [];
-  newInvestigator: Investigator = { investigator_id:0, profile_name: '', first_name: '', last_name: '', address: '', email: '', wallet_public_address: '' }
 
   constructor(
-    private router: Router,
     public decimalPipe: DecimalPipe,
-    private investigatorService: InvestigatorsService,
-    private http: HttpClient
+    private messageService: MessageService,
+    private investigatorService: InvestigatorsService
   ) { }
 
-  isLoading: boolean = true;
-  showNewInvestigatorModal: boolean = false;
-
-  showProcessModal: boolean = false;
+  investigator: InvestigatorModel = new InvestigatorModel();
   isProcessing: boolean = false;
 
-  public getAllInvestigators(): void {
-    this.investigator = []
-    this.investigatorService.getInvestigators().subscribe(
-      result => {
-        let data: any = result;
-        if (data.length > 0) {
-          for (let i = 0; i < data.length; i++) {
-            this.investigator.push({
-              investigator_id: data[i].investigator_id,
-              profile_name: data[i].profile_name,
-              first_name: data[i].first_name,
-              last_name: data[i].last_name,
-              address: data[i].address,
-              email: data[i].email,
-              wallet_public_address: data[i].wallet_public_address
-            });
+  public registerInvestigator(): void {
+    if (this.investigator.profile_name == "") {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Profile name is required." });
+    } else if (this.investigator.first_name == "") {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "First name is required." });
+    } else if (this.investigator.last_name == "") {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Last name is required." });
+    } else if (this.investigator.address == "") {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Address is required." });
+    } else if (this.investigator.email == "") {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Email is required." });
+    } else if (this.investigator.wallet_public_address == "") {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Wallet public address is required." });
+    } else {
+      if (this.investigator.email != this.investigator.retype_email) {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: "Email and Retype email do not match." });
+      } else {
+        this.isProcessing = true;
+        this.investigatorService.registerInvestigator(this.investigator).subscribe(
+          result => {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: "Registration Successful" });
+
+            this.investigator = new InvestigatorModel();
+            this.isProcessing = false;
+          },
+          error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+            this.isProcessing = false;
           }
-          console.log(this.investigator);
-        }
-        this.isLoading = false;
-      },
-      error => {}
-    )
+        );
+      }
+    }
   }
 
-  public openNewInvestigatorModal(): void {
-    this.showNewInvestigatorModal = true;
-  }
-
-  public addInvestigator(): void {
-    this.investigatorService.addInvestigator(this.newInvestigator).subscribe(investigator => {
-      console.log(investigator);
-      this.investigator.push(investigator);
-      this.newInvestigator = { investigator_id: 0, profile_name: '', first_name: '', last_name: '', address: '', email: '', wallet_public_address: '' };
-    });
-  }
-  
   ngOnInit() {
     this.breadcrumbHome = { icon: 'pi pi-home', routerLink: '/app/dashboard' };
     this.breadcrumbItems = [
       { label: 'Dashboard', routerLink: '/app/dashboard' },
-      { label: 'Investigators' }
+      { label: 'Investigator Registration' }
     ];
-    this.getAllInvestigators();
   }
-
 }

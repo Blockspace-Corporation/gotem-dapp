@@ -38,26 +38,12 @@ export class InvestigatorsService {
     });
   }
 
-  uploadCredentials(data: String): Observable<any> {
+  uploadFile(file: File): Observable<any> {
     return new Observable<any>((observer) => {
-      this.httpClient.post(this.defaultApiEndpoint + "/api/investigator/upload-credentials", data, this.options).subscribe(
-        response => {
-          let results: any = response;
+      const formData = new FormData();
+      formData.append('file', file);
 
-          observer.next(results);
-          observer.complete();
-        },
-        error => {
-          observer.error(error);
-          observer.complete();
-        }
-      );
-    });
-  }
-
-  uploadProfilePicture(data: String): Observable<any> {
-    return new Observable<any>((observer) => {
-      this.httpClient.post(this.defaultApiEndpoint + "/api/investigator/upload-profile-picture", data, this.options).subscribe(
+      this.httpClient.post(this.defaultApiEndpoint + "/api/investigator/upload", formData).subscribe(
         response => {
           let results: any = response;
 

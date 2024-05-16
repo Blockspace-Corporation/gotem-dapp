@@ -5,6 +5,11 @@ import { MessageService } from 'primeng/api';
 import { InvestigatorModel } from '../../models/investigator.model';
 import { InvestigatorsService } from '../../services/investigators/investigators.service';
 
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
+
 @Component({
   selector: 'app-investigators',
   templateUrl: './investigators.component.html',
@@ -23,6 +28,12 @@ export class InvestigatorsComponent {
 
   investigator: InvestigatorModel = new InvestigatorModel();
   isProcessing: boolean = false;
+
+  credentialsFilesToBeUploaded: any[] = [];
+  profilePictureFilesToBeUploaded: any[] = [];
+
+  uploadedCredentialsFile: File | null = null;
+  uploadedProfilePictureFile: File | null = null;
 
   public registerInvestigator(): void {
     if (this.investigator.profile_name == "") {
@@ -56,6 +67,46 @@ export class InvestigatorsComponent {
         );
       }
     }
+  }
+
+  onUploadCredentials(event: UploadEvent) {
+    this.uploadedCredentialsFile = event.files[0];
+    this.isProcessing = true;
+
+    this.investigatorService.uploadFile(this.uploadedCredentialsFile).subscribe(
+      result => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: "Credentials Uploaded" });
+
+        this.investigator.credentials = result.url;
+        this.isProcessing = false;
+
+        this.credentialsFilesToBeUploaded = [];
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+        this.isProcessing = false;
+      }
+    );
+  }
+
+  onUploadProfilePicture(event: UploadEvent) {
+    this.uploadedProfilePictureFile = event.files[0];
+    this.isProcessing = true;
+
+    this.investigatorService.uploadFile(this.uploadedProfilePictureFile).subscribe(
+      result => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: "Profile Picture Uploaded" });
+
+        this.investigator.profile_picture = result.url;
+        this.isProcessing = false;
+
+        this.profilePictureFilesToBeUploaded = [];
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+        this.isProcessing = false;
+      }
+    );
   }
 
   ngOnInit() {

@@ -1,0 +1,119 @@
+<div class="w-full mb-3">
+    <div class="page-title">
+        <span><i class="pi pi-fw pi-folder-open" style="font-size: 1.3rem;"></i>&nbsp;Investigators</span>
+    </div>
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
+</div>
+<div class="w-full mb-3">
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+            <div class="w-full">
+                <p-panel header="Details">
+                    <div class="grid">
+                        <div class="col-12 md:col-6 lg:col-12">
+                            <div class="flex flex-column gap-1">
+                                <label for="profile_name">Profile Name</label>
+                                <input pInputText [(ngModel)]="investigator.profile_name" type="text"
+                                    name="profile_name" [disabled]="isProcessing" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="first_name">First Name</label>
+                                <input pInputText [(ngModel)]="investigator.first_name" type="text" name="first_name"
+                                    [disabled]="isProcessing" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="last_name">Last Name</label>
+                                <input pInputText [(ngModel)]="investigator.last_name" type="text" name="last_name"
+                                    [disabled]="isProcessing" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-12">
+                            <div class="flex flex-column gap-1">
+                                <label for="address">Address</label>
+                                <textarea rows="5" pInputTextarea class="w-full" [(ngModel)]="investigator.address"
+                                    [disabled]="isProcessing"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="email">Email</label>
+                                <input pInputText [(ngModel)]="investigator.email" type="email" name="email"
+                                    [disabled]="isProcessing" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-6">
+                            <div class="flex flex-column gap-2">
+                                <label for="retypeemail">Re-type Email</label>
+                                <input pInputText [(ngModel)]="investigator.retype_email" [disabled]="isProcessing" />
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-12">
+                            <div class="flex flex-column gap-1">
+                                <label for="wallet_public_address">Wallet Public Address</label>
+                                <input pInputText [(ngModel)]="investigator.wallet_public_address"
+                                    [disabled]="isProcessing" />
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-6">
+            <div class="w-full mb-3">
+                <p-panel header="Upload Credentials">
+                    <div class="grid">
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <p-fileUpload [customUpload]="true" [files]="credentialsFilesToBeUploaded"
+                                    (uploadHandler)="onUploadCredentials($any($event))" [maxFileSize]="1000000"
+                                    [disabled]="isProcessing"></p-fileUpload>
+                                <div *ngIf="investigator.credentials != '-'">
+                                    <ul *ngIf="uploadedCredentialsFile">
+                                        <li>{{ uploadedCredentialsFile.name }} - {{ uploadedCredentialsFile.size }}
+                                            bytes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+            <div class="w-full mb-3">
+                <p-panel header="Upload Profile Picture">
+                    <div class="grid">
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="flex flex-column gap-2">
+                                <p-fileUpload accept="image/*" [customUpload]="true"
+                                    [files]="profilePictureFilesToBeUploaded"
+                                    (uploadHandler)="onUploadProfilePicture($any($event))" [maxFileSize]="1000000"
+                                    [disabled]="isProcessing"></p-fileUpload>
+                                <div *ngIf="investigator.profile_picture != '-'">
+                                    <img [src]="investigator.profile_picture" class="w-full" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-full">
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+            <button pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing"
+                (click)="registerInvestigator()">
+                <div class="w-full text-center">
+                    Register
+                </div>
+            </button>
+        </div>
+        <div class="col-12 md:col-6 lg:col-6"></div>
+    </div>
+</div>
+
+<p-toast position="top-right"></p-toast>

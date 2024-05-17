@@ -1,10 +1,10 @@
 import {
+  TimesIcon
+} from "./chunk-ARIZ4KA7.js";
+import {
   Tooltip,
   TooltipModule
 } from "./chunk-MVVAS5PI.js";
-import {
-  TimesIcon
-} from "./chunk-ARIZ4KA7.js";
 import {
   SpinnerIcon
 } from "./chunk-7AVJX33F.js";
@@ -5475,12 +5475,12 @@ var DropdownModule = class _DropdownModule {
 })();
 
 export {
+  ChevronDownIcon,
   Scroller,
   ScrollerModule,
-  ChevronDownIcon,
   DROPDOWN_VALUE_ACCESSOR,
   DropdownItem,
   Dropdown,
   DropdownModule
 };
-//# sourceMappingURL=chunk-NGLC6BQQ.js.map
+//# sourceMappingURL=chunk-GC3WTJFA.js.map

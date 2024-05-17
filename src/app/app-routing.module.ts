@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/app', pathMatch: 'full' },
   { path: 'polkadot-identicon', component: PolkadotIdenticonComponent },
   // { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }, 
-  { path: 'app', loadChildren: () => import('./modules/layout/layout.module').then(m => m.LayoutModule) },
+  { path: 'app', loadChildren: () => import('./modules/layout/layout.module').then(m => m.LayoutModule) }
 ];
 
 @NgModule({

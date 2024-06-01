@@ -61,22 +61,39 @@
                     </div>
                 </p-panel>
             </div>
+            <div class="grid">
+                <div class="col-12 mt-5">
+                    <button pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing"
+                        (click)="registerInvestigator()">
+                        <div class="w-full text-center py-1 font-bold">
+                            Register
+                        </div>
+                    </button>
+                </div>
+                <div class="col-12 md:col-6 lg:col-6"></div>
+            </div>
         </div>
         <div class="col-12 md:col-6 lg:col-6">
             <div class="w-full mb-3">
                 <p-panel header="Upload Credentials">
                     <div class="grid">
-                        <div class="col-12 md:col-12 lg:col-12">
+                        <div class="col-12 md:col-12 lg:col-12 h-16rem">
                             <div class="flex flex-column gap-2">
                                 <p-fileUpload [customUpload]="true" [files]="credentialsFilesToBeUploaded"
                                     (uploadHandler)="onUploadCredentials($any($event))" [maxFileSize]="1000000"
                                     [disabled]="isProcessing"></p-fileUpload>
-                                <div *ngIf="investigator.credentials != '-'">
+                                <ng-container *ngIf="investigator.credentials != '-'"; else empty>
                                     <ul *ngIf="uploadedCredentialsFile">
-                                        <li>{{ uploadedCredentialsFile.name }} - {{ uploadedCredentialsFile.size }}
+                                        <li>{{ uploadedCredentialsFile.name | truncate: 60 }} - {{ uploadedCredentialsFile.size }}
                                             bytes</li>
                                     </ul>
-                                </div>
+                                </ng-container>
+                                <ng-template #empty>
+                                    <ul *ngIf="uploadedCredentialsFile">
+                                        <li>
+                                            bytes</li>
+                                    </ul>
+                                </ng-template>
                             </div>
                         </div>
                     </div>
@@ -85,14 +102,14 @@
             <div class="w-full mb-3">
                 <p-panel header="Upload Profile Picture">
                     <div class="grid">
-                        <div class="col-12 md:col-12 lg:col-12">
+                        <div class="col-12 md:col-12 lg:col-12 h-16rem">
                             <div class="flex flex-column gap-2">
                                 <p-fileUpload accept="image/*" [customUpload]="true"
                                     [files]="profilePictureFilesToBeUploaded"
                                     (uploadHandler)="onUploadProfilePicture($any($event))" [maxFileSize]="1000000"
                                     [disabled]="isProcessing"></p-fileUpload>
                                 <div *ngIf="investigator.profile_picture != '-'">
-                                    <img [src]="investigator.profile_picture" class="w-full" />
+                                    <img [src]="investigator.profile_picture" class="profile-picture" />
                                 </div>
                             </div>
                         </div>
@@ -102,18 +119,4 @@
         </div>
     </div>
 </div>
-<div class="w-full">
-    <div class="grid">
-        <div class="col-12 md:col-6 lg:col-6">
-            <button pButton class="p-button p-button-rounded w-full" [disabled]="isProcessing"
-                (click)="registerInvestigator()">
-                <div class="w-full text-center">
-                    Register
-                </div>
-            </button>
-        </div>
-        <div class="col-12 md:col-6 lg:col-6"></div>
-    </div>
-</div>
-
 <p-toast position="top-right"></p-toast>

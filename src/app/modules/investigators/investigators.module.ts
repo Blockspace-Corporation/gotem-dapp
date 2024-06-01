@@ -25,10 +25,12 @@ import { ToastModule } from 'primeng/toast';
 import { InvestigatorsRoutingModule } from './investigators-routing.module';
 import { InvestigatorsComponent } from './investigators.component';
 import { InvestigatorModel } from '../../models/investigator.model';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
-    InvestigatorsComponent
+    InvestigatorsComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,9 @@ import { InvestigatorModel } from '../../models/investigator.model';
     ButtonModule,
     ConfirmDialogModule,
     ToastModule
+  ],
+  exports: [
+    TruncatePipe
   ],
   providers: [
     DecimalPipe,
